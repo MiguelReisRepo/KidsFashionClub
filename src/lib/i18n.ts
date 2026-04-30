@@ -61,6 +61,14 @@ const dict = {
   'audience.kids':      { pt: 'Kids',                     en: 'Kids' },
   'product.kids':       { pt: 'Kids',                     en: 'Kids' },
 
+  // form
+  'product.size.pick':  { pt: 'Seleciona um tamanho',     en: 'Pick a size' },
+  'product.personalize': { pt: 'Personalizar com nome e número', en: 'Add name & number' },
+  'product.personalize.name':   { pt: 'Nome',             en: 'Name' },
+  'product.personalize.number': { pt: 'Número',           en: 'Number' },
+  'product.personalize.hint':   { pt: 'Ex.: SILVA 10',    en: 'e.g. SILVA 10' },
+  'product.total':      { pt: 'Total',                    en: 'Total' },
+
   // generic
   'cta.viewAll':        { pt: 'Ver todos',                en: 'View all' },
   'footer.tagline':     { pt: 'Camisolas para verdadeiros adeptos.', en: 'Jerseys for real fans.' },

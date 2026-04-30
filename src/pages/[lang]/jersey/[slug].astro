@@ -1,10 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import WhatsAppButton from '@/components/WhatsAppButton.astro';
 import ProductGallery from '@/components/ProductGallery.astro';
 import { LANGS, t, type Lang } from '@/lib/i18n';
 import { buildPageSeo, productJsonLd } from '@/lib/seo';
-import { buyLink, askLink } from '@/lib/whatsapp';
 import { products } from '@/data/seed';
 
 export function getStaticPaths() {
@@ -17,8 +15,11 @@ const { lang, slug } = Astro.params as { lang: Lang; slug: string };
 const { product } = Astro.props as { product: typeof products[number] };
 
 const isPreOrder = product.availability === 'pre_order';
-const wa = isPreOrder ? askLink(product, lang) : buyLink(product, lang);
 const ig = import.meta.env.PUBLIC_INSTAGRAM_URL;
+const phone = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '351924455685';
+
+const persPrice = product.personalization?.price ?? 0;
+const hasPers = !!product.personalization;
 
 const path = `/${lang}/jersey/${slug}`;
 const seo = buildPageSeo({
@@ -28,13 +29,14 @@ const seo = buildPageSeo({
   description: product.description[lang],
   ogImage: product.images[0],
 });
-
 const jsonLd = productJsonLd(product, lang, path);
 
 const availLabel =
   product.availability === 'in_stock'  ? t('product.in_stock', lang)
   : product.availability === 'pre_order' ? t('product.pre_order', lang)
   : t('product.sold_out', lang);
+
+const ctaLabel = isPreOrder ? t('product.ask', lang) : t('product.buy', lang);
 ---
 <BaseLayout lang={lang} title={seo.title} description={seo.description} canonical={seo.canonical} ogImage={seo.ogImage} jsonLd={jsonLd}>
   <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10">
@@ -47,41 +49,178 @@ const availLabel =
 
       <div class="mt-4 flex items-center gap-3">
         <span class="text-3xl font-bold">{product.price.toFixed(2)}€</span>
-        <span class={`text-xs uppercase tracking-widest font-bold px-2 py-1 rounded ${
-          product.availability === 'in_stock' ? 'bg-brand-gold text-brand-darker'
+        <span class:list={[
+          'text-xs uppercase tracking-widest font-bold px-2 py-1 rounded',
+          product.availability === 'in_stock'  ? 'bg-brand-gold text-brand-darker'
           : product.availability === 'pre_order' ? 'border border-brand-gold text-brand-gold'
           : 'bg-brand-line text-brand-muted'
-        }`}>{availLabel}</span>
+        ]}>{availLabel}</span>
       </div>
 
       <p class="mt-6 text-brand-muted leading-relaxed">{product.description[lang]}</p>
 
-      <div class="mt-8 border-t border-brand-line pt-6 space-y-4">
-        <div>
-          <div class="text-sm text-brand-muted">{t('product.sizes', lang)}</div>
-          <div class="mt-2 flex flex-wrap gap-2">
-            {product.sizes.map((s) => (
-              <span class="border border-brand-line text-sm font-semibold px-3 py-1.5 rounded-full">{s}</span>
+      <form
+        data-product-form
+        class="mt-8 border-t border-brand-line pt-6 space-y-6"
+        onsubmit="return false;"
+      >
+        <!-- Size selector -->
+        <fieldset>
+          <legend class="text-sm text-brand-muted uppercase tracking-widest">{t('product.size.pick', lang)}</legend>
+          <div class="mt-3 flex flex-wrap gap-2">
+            {product.sizes.map((size) => (
+              <label class="size-option cursor-pointer">
+                <input type="radio" name="size" value={size} class="sr-only peer" />
+                <span class="size-pill inline-block border border-brand-line text-sm font-semibold px-4 py-1.5 rounded-full hover:border-brand-muted">{size}</span>
+              </label>
             ))}
           </div>
-        </div>
-        <div>
-          <div class="text-sm text-brand-muted">{t('product.shipping', lang)}</div>
-          <div class="mt-1 font-semibold">
-            {product.shippingDays} {t('product.shipping.days', lang)}
-          </div>
-        </div>
-      </div>
+        </fieldset>
 
-      <div class="mt-8 flex flex-wrap gap-3">
-        <WhatsAppButton href={wa} label={isPreOrder ? t('product.ask', lang) : t('product.buy', lang)} />
+        {hasPers && (
+          <fieldset class="personalize-block">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" name="personalize" class="mt-1 accent-brand-gold w-4 h-4" />
+              <span>
+                <span class="font-semibold">{t('product.personalize', lang)}</span>
+                <span class="ml-2 text-brand-gold font-bold">+{persPrice.toFixed(2)}€</span>
+                <span class="block text-xs text-brand-muted mt-0.5">{t('product.personalize.hint', lang)}</span>
+              </span>
+            </label>
+            <div class="pers-fields hidden mt-4 grid gap-3" style="grid-template-columns: 1fr 100px;" data-pers-fields>
+              <input
+                type="text"
+                name="custom-name"
+                maxlength="14"
+                placeholder={t('product.personalize.name', lang)}
+                class="bg-brand-darker border border-brand-line rounded-lg px-3 py-2.5 text-sm focus:border-brand-gold focus:outline-none uppercase tracking-wider"
+                style="text-transform: uppercase;"
+              />
+              <input
+                type="number"
+                name="custom-number"
+                min="1"
+                max="99"
+                placeholder="#"
+                class="bg-brand-darker border border-brand-line rounded-lg px-3 py-2.5 text-sm focus:border-brand-gold focus:outline-none text-center"
+              />
+            </div>
+          </fieldset>
+        )}
+
+        <div class="text-sm text-brand-muted">
+          <span class="uppercase tracking-widest">{t('product.shipping', lang)}: </span>
+          <span class="font-semibold text-brand-light">{product.shippingDays} {t('product.shipping.days', lang)}</span>
+        </div>
+
+        <div class="border-t border-brand-line pt-6 flex items-end justify-between gap-4 flex-wrap">
+          <div>
+            <div class="text-xs text-brand-muted uppercase tracking-widest">{t('product.total', lang)}</div>
+            <div class="mt-1 text-3xl font-extrabold" data-total>{product.price.toFixed(2)}€</div>
+          </div>
+
+          <a
+            data-wa-link
+            href={`https://wa.me/${phone}`}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center justify-center gap-2 bg-brand-gold text-brand-darker font-semibold rounded-full px-6 py-3 hover:bg-brand-gold-soft transition-colors text-sm"
+          >
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor" aria-hidden="true">
+              <path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.48 0 .15 5.32.15 11.88c0 2.1.55 4.14 1.6 5.94L0 24l6.34-1.66a11.85 11.85 0 0 0 5.7 1.45h.01c6.56 0 11.89-5.32 11.89-11.88 0-3.18-1.24-6.16-3.42-8.43Zm-8.48 18.3a9.83 9.83 0 0 1-5.01-1.37l-.36-.21-3.76.99 1-3.66-.23-.38a9.84 9.84 0 0 1-1.5-5.27c0-5.45 4.43-9.88 9.88-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.9 9.89Zm5.42-7.41c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.11 3.22 5.11 4.51.71.31 1.27.49 1.71.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35Z"/>
+            </svg>
+            <span>{ctaLabel}</span>
+          </a>
+        </div>
+
         {ig && (
-          <a href={ig} target="_blank" rel="noopener" class="inline-flex items-center gap-2 border border-brand-line text-brand-light font-semibold rounded-full px-5 py-3 hover:border-brand-gold hover:text-brand-gold transition-colors text-sm">
-            Instagram
+          <a href={ig} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm text-brand-muted hover:text-brand-gold transition-colors">
+            Instagram →
           </a>
         )}
-      </div>
-    </div>
+      </form>
 
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Size pills — selected state */
+  .size-option:has(input:checked) .size-pill {
+    background: var(--color-brand-gold);
+    color: var(--color-brand-darker);
+    border-color: var(--color-brand-gold);
+  }
+
+  /* Show personalization fields only when checkbox is on */
+  .personalize-block:has(input[name="personalize"]:checked) .pers-fields {
+    display: grid !important;
+  }
+</style>
+
+<script
+  is:inline
+  define:vars={{
+    phone,
+    basePrice: product.price,
+    persPrice,
+    productName: product.name[lang],
+    season: product.season,
+    lang,
+    isPreOrder,
+  }}
+>
+  (function () {
+    const form = document.querySelector('[data-product-form]');
+    if (!form) return;
+    const linkEl = form.querySelector('[data-wa-link]');
+    const totalEl = form.querySelector('[data-total]');
+    if (!linkEl || !totalEl) return;
+
+    function fmt(n) { return n.toFixed(2); }
+
+    function buildMessage() {
+      const sizeInput = form.querySelector('input[name="size"]:checked');
+      const size = sizeInput ? sizeInput.value : '';
+      const persCheckbox = form.querySelector('input[name="personalize"]');
+      const persOn = !!(persCheckbox && persCheckbox.checked);
+      const persName = (form.querySelector('input[name="custom-name"]') || {}).value || '';
+      const persNumber = (form.querySelector('input[name="custom-number"]') || {}).value || '';
+      const persClean = persName.trim().toUpperCase();
+      const persNumClean = persNumber.trim();
+
+      const total = basePrice + (persOn ? persPrice : 0);
+      totalEl.textContent = fmt(total) + '€';
+
+      const sizeStr = size || (lang === 'pt' ? 'a confirmar' : 'TBD');
+
+      let msg;
+      if (isPreOrder) {
+        msg = lang === 'pt'
+          ? 'Olá! Queria saber a disponibilidade e prazo da *' + productName + '* (' + season + ', tamanho ' + sizeStr + ').'
+          : "Hi! I'd like to check availability and lead time on *" + productName + '* (' + season + ', size ' + sizeStr + ').';
+      } else {
+        msg = lang === 'pt'
+          ? 'Olá! Tenho interesse na *' + productName + '* (' + season + ', tamanho ' + sizeStr + ') — ' + fmt(basePrice) + '€.'
+          : "Hi! I'd like the *" + productName + '* (' + season + ', size ' + sizeStr + ') — €' + fmt(basePrice) + '.';
+      }
+
+      if (persOn && (persClean || persNumClean)) {
+        const persLabel = lang === 'pt' ? 'Personalização' : 'Personalisation';
+        const display = (persClean || '?') + (persNumClean ? ' #' + persNumClean : '');
+        msg += '\n' + persLabel + ': ' + display + ' (+' + fmt(persPrice) + '€)';
+        msg += '\n' + (lang === 'pt' ? 'Total' : 'Total') + ': ' + fmt(total) + '€';
+      }
+
+      msg += isPreOrder
+        ? (lang === 'pt' ? '\nObrigado!' : '\nThanks!')
+        : (lang === 'pt' ? '\nEstá disponível?' : '\nIs it available?');
+
+      linkEl.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+    }
+
+    form.addEventListener('input', buildMessage);
+    form.addEventListener('change', buildMessage);
+    buildMessage();
+  })();
+</script>

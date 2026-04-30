@@ -56,5 +56,10 @@ const availClass =
         {product.shippingDays} {t('product.shipping.days', lang)}
       </span>
     </div>
+    {product.personalization && (
+      <div class="mt-1 text-[11px] text-brand-gold/80">
+        + {lang === 'pt' ? 'personalização' : 'personalisation'}: {product.personalization.price.toFixed(2)}€
+      </div>
+    )}
   </div>
 </a>

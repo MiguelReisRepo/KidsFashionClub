@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1F1F1F"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8B923" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#E8B923" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <ellipse cx="200" cy="180" rx="180" ry="120" fill="url(#glow)"/>
+
+  <!-- T-shirt back (dashed, ghost) -->
+  <path d="M135 135 L180 110 L220 110 L265 135 L280 175 L255 185 L255 260 L145 260 L145 185 L120 175 Z"
+        fill="#1F1F1F" stroke="#E8B923" stroke-width="2" stroke-dasharray="7 4" opacity="0.55"/>
+  <path d="M180 115 Q200 122 220 115" fill="none" stroke="#E8B923" stroke-width="1.5" opacity="0.35"/>
+  <text x="200" y="220" font-family="Inter, system-ui, sans-serif" font-size="55" font-weight="800" fill="#E8B923" text-anchor="middle" opacity="0.3">7</text>
+
+  <!-- Shorts back (dashed, ghost) -->
+  <path d="M155 285 L245 285 L255 305 L250 395 L215 395 L210 330 L190 330 L185 395 L150 395 L145 305 Z"
+        fill="#1F1F1F" stroke="#E8B923" stroke-width="2" stroke-dasharray="7 4" opacity="0.55"/>
+  <line x1="158" y1="295" x2="242" y2="295" stroke="#E8B923" stroke-width="1" opacity="0.35"/>
+
+  <g transform="translate(335, 75)">
+    <circle cx="0" cy="0" r="22" fill="#0A0A0A" stroke="#E8B923" stroke-width="2"/>
+    <line x1="0" y1="0" x2="0" y2="-13" stroke="#E8B923" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="9" y2="6" stroke="#E8B923" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="1.5" fill="#E8B923"/>
+  </g>
+
+  <text x="200" y="445" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#A1A1A1" text-anchor="middle" letter-spacing="3">KIDS FAN CLUB</text>
+  <text x="200" y="465" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#5C5C5C" text-anchor="middle" letter-spacing="2">BACK • CONJUNTO</text>
+</svg>
