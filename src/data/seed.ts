@@ -5,7 +5,7 @@ const KIDS_SIZES = ['4-5', '6-7', '8-9', '10-11', '12-13'];
 const KIDS_BIG_ONLY = ['8-9', '10-11', '12-13'];
 
 /** Default personalization fee. Add `personalization: PERS` to make a product customizable. */
-const PERS = { price: 5 };
+const PERS = { price: 3 };
 
 export const products: Product[] = [
   // ─── ADULTS · IN-STOCK ───────────────────────────────────────────────
