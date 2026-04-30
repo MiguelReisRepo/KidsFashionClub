@@ -98,7 +98,7 @@ export const products: Product[] = [
     sizes: ['M', 'L', 'XL'],
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/placeholder.svg'],
+    images: ['/products/placeholder-preorder.svg'],
     description: {
       pt: 'Real Madrid — equipamento principal 2024/25, por encomenda. Prazo aprox. 18 dias úteis.',
       en: 'Real Madrid home kit 2024/25, pre-order. Lead time ~18 business days.',
@@ -117,7 +117,7 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/placeholder.svg'],
+    images: ['/products/placeholder-preorder.svg'],
     description: {
       pt: 'FC Barcelona principal 2024/25, por encomenda. Versão adepto.',
       en: 'FC Barcelona home 2024/25, pre-order. Fan version.',
@@ -156,7 +156,7 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     availability: 'pre_order',
     shippingDays: 21,
-    images: ['/products/placeholder.svg'],
+    images: ['/products/placeholder-preorder.svg'],
     description: {
       pt: 'Argentina — equipamento principal 2024, por encomenda. Réplica não oficial.',
       en: 'Argentina home kit 2024, pre-order. Unofficial replica.',
@@ -259,7 +259,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/placeholder-kids.svg'],
+    images: ['/products/placeholder-kids-preorder.svg'],
     description: {
       pt: 'Conjunto kids Real Madrid 2024/25 — t-shirt + calções, por encomenda.',
       en: 'Real Madrid 2024/25 kids kit — t-shirt + shorts, pre-order.',
