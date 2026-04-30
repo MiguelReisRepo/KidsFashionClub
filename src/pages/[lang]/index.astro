@@ -6,7 +6,7 @@ import AudienceFilter from '@/components/AudienceFilter.astro';
 import { LANGS, t, type Lang, ROUTES } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
 import { customOrderLink } from '@/lib/whatsapp';
-import { inStockProducts, newProducts, featuredProducts, products } from '@/data/seed';
+import { inStockProducts, products } from '@/data/seed';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -15,11 +15,9 @@ export function getStaticPaths() {
 const { lang } = Astro.params as { lang: Lang };
 const r = ROUTES[lang];
 
-const stock     = inStockProducts().slice(0, 4);
-const news      = newProducts().slice(0, 4);
-const featured  = featuredProducts().slice(0, 4);
-const all       = products;
-const wa        = customOrderLink(lang);
+const stock = inStockProducts().slice(0, 4);
+const all   = products;
+const wa    = customOrderLink(lang);
 
 const seo = buildPageSeo({
   lang,
@@ -59,17 +57,6 @@ const seo = buildPageSeo({
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       {stock.map((p) => <ProductCard product={p} lang={lang} />)}
-    </div>
-  </section>
-
-  <!-- Novidades -->
-  <section class="max-w-6xl mx-auto px-4 py-16 border-t border-brand-line">
-    <div class="flex items-end justify-between mb-8">
-      <h2 class="text-3xl font-extrabold">{t('home.new.title', lang)}</h2>
-      <a href={r.stock} class="text-sm text-brand-gold hover:underline">{t('cta.viewAll', lang)} →</a>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {news.map((p) => <ProductCard product={p} lang={lang} />)}
     </div>
   </section>
 
