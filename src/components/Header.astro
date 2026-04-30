@@ -1,0 +1,33 @@
+---
+import type { Lang } from '@/lib/i18n';
+import { t, ROUTES } from '@/lib/i18n';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang: Lang;
+  altPath: string;
+  altLang: Lang;
+}
+
+const { lang, altPath, altLang } = Astro.props;
+const r = ROUTES[lang];
+const home = `/${lang}`;
+---
+<header class="border-b border-brand-line bg-brand-darker/80 backdrop-blur sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+    <a href={home} class="flex items-center gap-2 group">
+      <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-gold text-brand-darker font-extrabold">K</span>
+      <span class="font-extrabold tracking-tight text-lg">Kids Fan Club</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      <a href={r.stock} class="hover:text-brand-gold transition-colors">{t('nav.stock', lang)}</a>
+      <a href={r.order} class="hover:text-brand-gold transition-colors">{t('nav.order', lang)}</a>
+      <a href={r.how}   class="hover:text-brand-gold transition-colors">{t('nav.how', lang)}</a>
+      <a href={r.about} class="hover:text-brand-gold transition-colors">{t('nav.about', lang)}</a>
+      <a href={r.faq}   class="hover:text-brand-gold transition-colors">{t('nav.faq', lang)}</a>
+    </nav>
+
+    <LanguageSwitcher altLang={altLang} altPath={altPath} />
+  </div>
+</header>

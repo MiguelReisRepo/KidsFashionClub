@@ -1,0 +1,58 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import type { Lang } from '@/lib/i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  jsonLd?: object;
+}
+
+const { lang, title, description, canonical, ogImage, jsonLd } = Astro.props;
+const site = import.meta.env.PUBLIC_SITE_URL ?? Astro.url.origin;
+
+const altLang: Lang = lang === 'pt' ? 'en' : 'pt';
+const altPath = Astro.url.pathname.replace(/^\/(pt|en)/, `/${altLang}`);
+---
+<!doctype html>
+<html lang={lang === 'pt' ? 'pt-PT' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <link rel="alternate" hreflang="pt-PT" href={`${site}${Astro.url.pathname.replace(/^\/(pt|en)/, '/pt')}`} />
+    <link rel="alternate" hreflang="en" href={`${site}${Astro.url.pathname.replace(/^\/(pt|en)/, '/en')}`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}/pt`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:locale" content={lang === 'pt' ? 'pt_PT' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body class="bg-brand-dark text-brand-light flex flex-col min-h-screen">
+    <Header lang={lang} altPath={altPath} altLang={altLang} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

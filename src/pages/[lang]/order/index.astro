@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import WhatsAppButton from '@/components/WhatsAppButton.astro';
+import { LANGS, t, type Lang } from '@/lib/i18n';
+import { buildPageSeo } from '@/lib/seo';
+import { customOrderLink } from '@/lib/whatsapp';
+import { preOrderProducts } from '@/data/seed';
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const products = preOrderProducts();
+const wa = customOrderLink(lang);
+
+const seo = buildPageSeo({
+  lang,
+  path: `/${lang}/order`,
+  title: t('cat.order.title', lang),
+  description: lang === 'pt'
+    ? 'Camisolas por encomenda — diz-nos o que queres e tratamos da disponibilidade.'
+    : 'Pre-order jerseys — tell us what you want and we’ll source it.',
+});
+---
+<BaseLayout lang={lang} title={seo.title} description={seo.description} canonical={seo.canonical}>
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h1 class="text-4xl font-extrabold">{t('cat.order.title', lang)}</h1>
+        <p class="text-brand-muted mt-2">
+          {lang === 'pt' ? 'Prazo típico: 2-3 semanas' : 'Typical lead time: 2-3 weeks'}
+        </p>
+      </div>
+      <WhatsAppButton href={wa} label={lang === 'pt' ? 'Pedir camisola específica' : 'Request a specific jersey'} variant="outline" />
+    </div>
+
+    {products.length === 0
+      ? <p class="mt-12 text-brand-muted">—</p>
+      : (
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {products.map((p) => <ProductCard product={p} lang={lang} />)}
+        </div>
+      )
+    }
+  </section>
+</BaseLayout>

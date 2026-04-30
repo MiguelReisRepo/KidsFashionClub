@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import { LANGS, t, type Lang } from '@/lib/i18n';
+import { buildPageSeo } from '@/lib/seo';
+import { inStockProducts } from '@/data/seed';
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const products = inStockProducts();
+
+const seo = buildPageSeo({
+  lang,
+  path: `/${lang}/stock`,
+  title: t('cat.stock.title', lang),
+  description: lang === 'pt'
+    ? 'Camisolas de futebol disponíveis em stock para envio em 24-48h.'
+    : 'Football jerseys in stock, ready to ship in 24-48h.',
+});
+---
+<BaseLayout lang={lang} title={seo.title} description={seo.description} canonical={seo.canonical}>
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-extrabold">{t('cat.stock.title', lang)}</h1>
+    <p class="text-brand-muted mt-2">{t('home.stock.sub', lang)}</p>
+
+    {products.length === 0
+      ? <p class="mt-12 text-brand-muted">—</p>
+      : (
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {products.map((p) => <ProductCard product={p} lang={lang} />)}
+        </div>
+      )
+    }
+  </section>
+</BaseLayout>

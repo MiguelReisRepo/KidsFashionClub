@@ -1,0 +1,16 @@
+---
+import type { Lang } from '@/lib/i18n';
+
+interface Props {
+  altLang: Lang;
+  altPath: string;
+}
+const { altLang, altPath } = Astro.props;
+---
+<a
+  href={altPath}
+  class="text-xs uppercase tracking-widest border border-brand-line px-3 py-1.5 rounded-full hover:border-brand-gold hover:text-brand-gold transition-colors"
+  aria-label={`Switch to ${altLang.toUpperCase()}`}
+>
+  {altLang.toUpperCase()}
+</a>
