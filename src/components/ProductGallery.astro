@@ -1,0 +1,211 @@
+---
+interface Props {
+  images: string[];
+  alt: string;
+}
+
+const { images, alt } = Astro.props;
+const hasMany = images.length > 1;
+---
+<div class="gallery" data-gallery>
+  <div class="gallery-stage">
+    {hasMany && (
+      <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image" data-action="prev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+    )}
+
+    <div class="gallery-track" data-track>
+      {images.map((src, i) => (
+        <img
+          src={src}
+          alt={i === 0 ? alt : `${alt} (${i + 1})`}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          data-index={i}
+          class:list={['gallery-image', { active: i === 0 }]}
+        />
+      ))}
+    </div>
+
+    {hasMany && (
+      <button class="gallery-arrow gallery-next" type="button" aria-label="Next image" data-action="next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    )}
+
+    {hasMany && (
+      <span class="gallery-counter" data-counter>1 / {images.length}</span>
+    )}
+  </div>
+
+  {hasMany && (
+    <div class="gallery-thumbs">
+      {images.map((src, i) => (
+        <button
+          type="button"
+          class:list={['gallery-thumb', { active: i === 0 }]}
+          data-thumb={i}
+          aria-label={`Show image ${i + 1}`}
+        >
+          <img src={src} alt="" loading="lazy" />
+        </button>
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .gallery {
+    width: 100%;
+  }
+  .gallery-stage {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--color-brand-darker);
+    border: 1px solid var(--color-brand-line);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .gallery-track {
+    position: absolute;
+    inset: 0;
+  }
+  .gallery-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+  .gallery-image.active {
+    opacity: 1;
+  }
+  .gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    background: rgba(10, 10, 10, 0.7);
+    color: var(--color-brand-light);
+    border: 1px solid var(--color-brand-line);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    transition: background-color 150ms, color 150ms, border-color 150ms;
+  }
+  .gallery-arrow:hover {
+    background: var(--color-brand-gold);
+    color: var(--color-brand-darker);
+    border-color: var(--color-brand-gold);
+  }
+  .gallery-arrow svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .gallery-prev { left: 0.75rem; }
+  .gallery-next { right: 0.75rem; }
+  .gallery-counter {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    background: rgba(10, 10, 10, 0.75);
+    border: 1px solid var(--color-brand-line);
+    color: var(--color-brand-light);
+    padding: 0.3rem 0.6rem;
+    border-radius: 9999px;
+    backdrop-filter: blur(6px);
+  }
+  .gallery-thumbs {
+    margin-top: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .gallery-thumbs {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+  .gallery-thumb {
+    aspect-ratio: 1 / 1;
+    background: var(--color-brand-darker);
+    border: 1px solid var(--color-brand-line);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 150ms, transform 150ms;
+  }
+  .gallery-thumb:hover {
+    border-color: var(--color-brand-muted);
+  }
+  .gallery-thumb.active {
+    border-color: var(--color-brand-gold);
+  }
+  .gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
+<script>
+  function initGallery(gallery: HTMLElement) {
+    const images = Array.from(gallery.querySelectorAll<HTMLImageElement>('[data-index]'));
+    const thumbs = Array.from(gallery.querySelectorAll<HTMLButtonElement>('[data-thumb]'));
+    const counter = gallery.querySelector<HTMLElement>('[data-counter]');
+    const total = images.length;
+    if (total <= 1) return;
+
+    let current = 0;
+
+    function show(next: number) {
+      current = ((next % total) + total) % total;
+      images.forEach((img, i) => img.classList.toggle('active', i === current));
+      thumbs.forEach((thumb, i) => thumb.classList.toggle('active', i === current));
+      if (counter) counter.textContent = `${current + 1} / ${total}`;
+    }
+
+    gallery.querySelector<HTMLButtonElement>('[data-action="prev"]')
+      ?.addEventListener('click', () => show(current - 1));
+    gallery.querySelector<HTMLButtonElement>('[data-action="next"]')
+      ?.addEventListener('click', () => show(current + 1));
+    thumbs.forEach((thumb, i) => thumb.addEventListener('click', () => show(i)));
+
+    // Keyboard arrows when gallery is hovered/focused
+    gallery.tabIndex = 0;
+    gallery.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+    });
+
+    // Basic touch swipe on the stage
+    const stage = gallery.querySelector<HTMLElement>('.gallery-stage');
+    if (stage) {
+      let touchStartX = 0;
+      stage.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) < 40) return;
+        show(dx < 0 ? current + 1 : current - 1);
+      });
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach(initGallery);
+</script>

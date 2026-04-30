@@ -17,7 +17,7 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder.svg'],
+    images: ['/products/placeholder.svg', '/products/placeholder-back.svg'],
     description: {
       pt: 'Versão adepto da camisola principal do FC Porto. Réplica não oficial, materiais respiráveis.',
       en: 'Fan version of FC Porto’s home jersey. Unofficial replica, breathable fabric.',
@@ -38,7 +38,7 @@ export const products: Product[] = [
     sizes: ['M', 'L', 'XL'],
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder.svg'],
+    images: ['/products/placeholder.svg', '/products/placeholder-back.svg'],
     description: {
       pt: 'Camisola principal do Benfica, versão adepto. Réplica não oficial.',
       en: 'Benfica home jersey, fan version. Unofficial replica.',
@@ -58,7 +58,7 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L'],
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder.svg'],
+    images: ['/products/placeholder.svg', '/products/placeholder-back.svg'],
     description: {
       pt: 'Sporting CP — equipamento principal, versão adepto. Réplica não oficial.',
       en: 'Sporting CP home kit, fan version. Unofficial replica.',
@@ -78,7 +78,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES_FULL,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder.svg'],
+    images: ['/products/placeholder.svg', '/products/placeholder-back.svg'],
     description: {
       pt: 'Camisola principal da Seleção, Euro 2024. Versão adepto, réplica não oficial.',
       en: 'Portugal home jersey, Euro 2024. Fan version, unofficial replica.',
@@ -136,7 +136,7 @@ export const products: Product[] = [
     sizes: ['M', 'L'],
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder.svg'],
+    images: ['/products/placeholder.svg', '/products/placeholder-back.svg'],
     description: {
       pt: 'SC Braga, equipamento principal. Versão adepto, réplica não oficial.',
       en: 'SC Braga home kit, fan version. Unofficial replica.',
@@ -177,7 +177,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder-kids.svg'],
+    images: ['/products/placeholder-kids.svg', '/products/placeholder-kids-back.svg'],
     description: {
       pt: 'Conjunto kids FC Porto 2024/25 — t-shirt + calções. Tecido leve e respirável.',
       en: 'FC Porto 2024/25 kids kit — t-shirt + shorts. Light, breathable fabric.',
@@ -198,7 +198,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder-kids.svg'],
+    images: ['/products/placeholder-kids.svg', '/products/placeholder-kids-back.svg'],
     description: {
       pt: 'Conjunto kids SL Benfica 2024/25 — t-shirt + calções. Versão adepto.',
       en: 'SL Benfica 2024/25 kids kit — t-shirt + shorts. Fan version.',
@@ -218,7 +218,7 @@ export const products: Product[] = [
     sizes: ['4-5', '6-7', '8-9', '10-11'],
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder-kids.svg'],
+    images: ['/products/placeholder-kids.svg', '/products/placeholder-kids-back.svg'],
     description: {
       pt: 'Conjunto kids Sporting CP 2024/25 — t-shirt + calções. Versão adepto.',
       en: 'Sporting CP 2024/25 kids kit — t-shirt + shorts. Fan version.',
@@ -238,7 +238,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/placeholder-kids.svg'],
+    images: ['/products/placeholder-kids.svg', '/products/placeholder-kids-back.svg'],
     description: {
       pt: 'Conjunto kids Portugal Euro 2024 — t-shirt + calções. Réplica não oficial.',
       en: 'Portugal Euro 2024 kids kit — t-shirt + shorts. Unofficial replica.',

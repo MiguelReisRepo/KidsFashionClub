@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
+import ProductGallery from '@/components/ProductGallery.astro';
 import { LANGS, t, type Lang } from '@/lib/i18n';
 import { buildPageSeo, productJsonLd } from '@/lib/seo';
 import { buyLink, askLink } from '@/lib/whatsapp';
@@ -38,14 +39,7 @@ const availLabel =
 <BaseLayout lang={lang} title={seo.title} description={seo.description} canonical={seo.canonical} ogImage={seo.ogImage} jsonLd={jsonLd}>
   <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10">
 
-    <div class="bg-brand-darker border border-brand-line rounded-2xl overflow-hidden aspect-[4/5]">
-      <img
-        src={product.images[0]}
-        alt={product.name[lang]}
-        class="w-full h-full object-cover"
-        onerror="this.style.display='none';"
-      />
-    </div>
+    <ProductGallery images={product.images} alt={product.name[lang]} />
 
     <div>
       <p class="text-xs uppercase tracking-[0.25em] text-brand-gold">{product.team} · {product.season}</p>
