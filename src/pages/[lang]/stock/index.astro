@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductCard from '@/components/ProductCard.astro';
+import AudienceFilter from '@/components/AudienceFilter.astro';
 import { LANGS, t, type Lang } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
 import { inStockProducts } from '@/data/seed';
@@ -17,14 +18,19 @@ const seo = buildPageSeo({
   path: `/${lang}/stock`,
   title: t('cat.stock.title', lang),
   description: lang === 'pt'
-    ? 'Camisolas de futebol disponíveis em stock para envio em 24-48h.'
-    : 'Football jerseys in stock, ready to ship in 24-48h.',
+    ? 'Camisolas de futebol disponíveis em stock — adultos e kids. Envio em 24-48h.'
+    : 'Football jerseys in stock — adults and kids. Ships in 24-48h.',
 });
 ---
 <BaseLayout lang={lang} title={seo.title} description={seo.description} canonical={seo.canonical}>
-  <section class="max-w-6xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-extrabold">{t('cat.stock.title', lang)}</h1>
-    <p class="text-brand-muted mt-2">{t('home.stock.sub', lang)}</p>
+  <section class="catalog max-w-6xl mx-auto px-4 py-12">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h1 class="text-4xl font-extrabold">{t('cat.stock.title', lang)}</h1>
+        <p class="text-brand-muted mt-2">{t('home.stock.sub', lang)}</p>
+      </div>
+      <AudienceFilter lang={lang} group="stock" />
+    </div>
 
     {products.length === 0
       ? <p class="mt-12 text-brand-muted">—</p>
@@ -36,3 +42,9 @@ const seo = buildPageSeo({
     }
   </section>
 </BaseLayout>
+
+<style>
+  /* Hide cards that don't match the selected audience. */
+  .catalog:has(input[id$="-kids"]:checked)  .product-card[data-audience="adult"] { display: none; }
+  .catalog:has(input[id$="-adult"]:checked) .product-card[data-audience="kids"]  { display: none; }
+</style>

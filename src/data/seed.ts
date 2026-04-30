@@ -1,4 +1,7 @@
-import type { Product } from './types';
+import type { Audience, Product } from './types';
+
+const ADULT_SIZES_FULL = ['S', 'M', 'L', 'XL', 'XXL'];
+const KIDS_SIZES = ['4-5', '6-7', '8-9', '10-11', '12-13'];
 
 export const products: Product[] = [
   {
@@ -9,6 +12,7 @@ export const products: Product[] = [
     season: '2024/25',
     kitType: 'home',
     version: 'adepto',
+    audience: 'adult',
     price: 39.99,
     sizes: ['S', 'M', 'L', 'XL'],
     availability: 'in_stock',
@@ -29,6 +33,7 @@ export const products: Product[] = [
     season: '2024/25',
     kitType: 'home',
     version: 'adepto',
+    audience: 'adult',
     price: 39.99,
     sizes: ['M', 'L', 'XL'],
     availability: 'in_stock',
@@ -48,6 +53,7 @@ export const products: Product[] = [
     season: '2024/25',
     kitType: 'home',
     version: 'adepto',
+    audience: 'adult',
     price: 39.99,
     sizes: ['S', 'M', 'L'],
     availability: 'in_stock',
@@ -67,8 +73,9 @@ export const products: Product[] = [
     season: '2024',
     kitType: 'home',
     version: 'adepto',
+    audience: 'adult',
     price: 44.99,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    sizes: ADULT_SIZES_FULL,
     availability: 'in_stock',
     shippingDays: 2,
     images: ['/products/placeholder.svg'],
@@ -86,6 +93,7 @@ export const products: Product[] = [
     season: '2024/25',
     kitType: 'home',
     version: 'adepto',
+    audience: 'adult',
     price: 42.99,
     sizes: ['M', 'L', 'XL'],
     availability: 'pre_order',
@@ -104,6 +112,7 @@ export const products: Product[] = [
     season: '2024/25',
     kitType: 'home',
     version: 'adepto',
+    audience: 'adult',
     price: 42.99,
     sizes: ['S', 'M', 'L', 'XL'],
     availability: 'pre_order',
@@ -122,6 +131,7 @@ export const products: Product[] = [
     season: '2024/25',
     kitType: 'home',
     version: 'adepto',
+    audience: 'adult',
     price: 37.99,
     sizes: ['M', 'L'],
     availability: 'in_stock',
@@ -141,6 +151,7 @@ export const products: Product[] = [
     season: '2024',
     kitType: 'home',
     version: 'adepto',
+    audience: 'adult',
     price: 44.99,
     sizes: ['S', 'M', 'L', 'XL'],
     availability: 'pre_order',
@@ -151,24 +162,127 @@ export const products: Product[] = [
       en: 'Argentina home kit 2024, pre-order. Unofficial replica.',
     },
   },
+
+  // ─── KIDS ────────────────────────────────────────────────────────────
+  {
+    id: '101',
+    slug: 'fc-porto-principal-2024-25-kids',
+    name: { pt: 'FC Porto Principal 2024/25 Kids', en: 'FC Porto Home 2024/25 Kids' },
+    team: 'FC Porto',
+    season: '2024/25',
+    kitType: 'home',
+    version: 'adepto',
+    audience: 'kids',
+    price: 34.99,
+    sizes: KIDS_SIZES,
+    availability: 'in_stock',
+    shippingDays: 2,
+    images: ['/products/placeholder.svg'],
+    description: {
+      pt: 'Versão kids da camisola principal do FC Porto 2024/25. Tecido leve e respirável.',
+      en: 'Kids version of FC Porto’s home jersey 2024/25. Light, breathable fabric.',
+    },
+    isNew: true,
+    isFeatured: true,
+  },
+  {
+    id: '102',
+    slug: 'sl-benfica-principal-2024-25-kids',
+    name: { pt: 'SL Benfica Principal 2024/25 Kids', en: 'SL Benfica Home 2024/25 Kids' },
+    team: 'SL Benfica',
+    season: '2024/25',
+    kitType: 'home',
+    version: 'adepto',
+    audience: 'kids',
+    price: 34.99,
+    sizes: KIDS_SIZES,
+    availability: 'in_stock',
+    shippingDays: 2,
+    images: ['/products/placeholder.svg'],
+    description: {
+      pt: 'Camisola principal do Benfica em tamanhos kids. Versão adepto.',
+      en: 'Benfica home jersey in kids sizes. Fan version.',
+    },
+    isFeatured: true,
+  },
+  {
+    id: '103',
+    slug: 'sporting-cp-principal-2024-25-kids',
+    name: { pt: 'Sporting CP Principal 2024/25 Kids', en: 'Sporting CP Home 2024/25 Kids' },
+    team: 'Sporting CP',
+    season: '2024/25',
+    kitType: 'home',
+    version: 'adepto',
+    audience: 'kids',
+    price: 34.99,
+    sizes: ['4-5', '6-7', '8-9', '10-11'],
+    availability: 'in_stock',
+    shippingDays: 2,
+    images: ['/products/placeholder.svg'],
+    description: {
+      pt: 'Sporting CP equipamento principal — tamanhos kids. Versão adepto.',
+      en: 'Sporting CP home kit in kids sizes. Fan version.',
+    },
+    isNew: true,
+  },
+  {
+    id: '104',
+    slug: 'portugal-principal-euro-2024-kids',
+    name: { pt: 'Portugal Principal Euro 2024 Kids', en: 'Portugal Home Euro 2024 Kids' },
+    team: 'Seleção Nacional',
+    season: '2024',
+    kitType: 'home',
+    version: 'adepto',
+    audience: 'kids',
+    price: 39.99,
+    sizes: KIDS_SIZES,
+    availability: 'in_stock',
+    shippingDays: 2,
+    images: ['/products/placeholder.svg'],
+    description: {
+      pt: 'Camisola da Seleção, Euro 2024 — tamanhos kids. Réplica não oficial.',
+      en: 'Portugal home jersey, Euro 2024 — kids sizes. Unofficial replica.',
+    },
+    isFeatured: true,
+    isNew: true,
+  },
+  {
+    id: '105',
+    slug: 'real-madrid-principal-2024-25-kids',
+    name: { pt: 'Real Madrid Principal 2024/25 Kids', en: 'Real Madrid Home 2024/25 Kids' },
+    team: 'Real Madrid',
+    season: '2024/25',
+    kitType: 'home',
+    version: 'adepto',
+    audience: 'kids',
+    price: 37.99,
+    sizes: KIDS_SIZES,
+    availability: 'pre_order',
+    shippingDays: 18,
+    images: ['/products/placeholder.svg'],
+    description: {
+      pt: 'Real Madrid principal 2024/25 em tamanhos kids, por encomenda.',
+      en: 'Real Madrid home 2024/25 in kids sizes, pre-order.',
+    },
+  },
 ];
 
 export function findProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
-export function inStockProducts(): Product[] {
-  return products.filter((p) => p.availability === 'in_stock');
+export function inStockProducts(audience?: Audience): Product[] {
+  return products.filter((p) => p.availability === 'in_stock' && (!audience || p.audience === audience));
 }
 
-export function preOrderProducts(): Product[] {
-  return products.filter((p) => p.availability === 'pre_order');
+export function preOrderProducts(audience?: Audience): Product[] {
+  return products.filter((p) => p.availability === 'pre_order' && (!audience || p.audience === audience));
 }
 
-export function newProducts(): Product[] {
-  return products.filter((p) => p.isNew);
+export function newProducts(audience?: Audience): Product[] {
+  return products.filter((p) => p.isNew && (!audience || p.audience === audience));
 }
 
-export function featuredProducts(): Product[] {
-  return products.filter((p) => p.isFeatured);
+export function featuredProducts(audience?: Audience): Product[] {
+  return products.filter((p) => p.isFeatured && (!audience || p.audience === audience));
 }

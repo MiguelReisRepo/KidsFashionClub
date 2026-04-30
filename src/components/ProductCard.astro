@@ -22,7 +22,7 @@ const availClass =
   : product.availability === 'pre_order' ? 'border border-brand-gold text-brand-gold'
   : 'bg-brand-line text-brand-muted';
 ---
-<a href={href} class="group block bg-brand-darker border border-brand-line rounded-2xl overflow-hidden hover:border-brand-gold transition-colors">
+<a href={href} data-audience={product.audience} class="product-card group block bg-brand-darker border border-brand-line rounded-2xl overflow-hidden hover:border-brand-gold transition-colors">
   <div class="aspect-[4/5] bg-brand-line relative overflow-hidden">
     <img
       src={product.images[0]}
@@ -31,11 +31,18 @@ const availClass =
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       onerror="this.style.background='linear-gradient(135deg,#1F1F1F,#0A0A0A)';this.removeAttribute('src');"
     />
-    {product.isNew && (
-      <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest bg-brand-gold text-brand-darker font-bold px-2 py-1 rounded">
-        {t('product.new', lang)}
-      </span>
-    )}
+    <div class="absolute top-3 left-3 flex flex-col gap-1">
+      {product.isNew && (
+        <span class="text-[10px] uppercase tracking-widest bg-brand-gold text-brand-darker font-bold px-2 py-1 rounded">
+          {t('product.new', lang)}
+        </span>
+      )}
+      {product.audience === 'kids' && (
+        <span class="text-[10px] uppercase tracking-widest bg-brand-light text-brand-darker font-bold px-2 py-1 rounded">
+          {t('product.kids', lang)}
+        </span>
+      )}
+    </div>
     <span class={`absolute top-3 right-3 text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded ${availClass}`}>
       {availLabel}
     </span>

@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
+import AudienceFilter from '@/components/AudienceFilter.astro';
 import { LANGS, t, type Lang } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
 import { customOrderLink } from '@/lib/whatsapp';
@@ -20,12 +21,12 @@ const seo = buildPageSeo({
   path: `/${lang}/order`,
   title: t('cat.order.title', lang),
   description: lang === 'pt'
-    ? 'Camisolas por encomenda — diz-nos o que queres e tratamos da disponibilidade.'
-    : 'Pre-order jerseys — tell us what you want and we’ll source it.',
+    ? 'Camisolas por encomenda — adultos e kids. Diz-nos o que queres e tratamos da disponibilidade.'
+    : 'Pre-order jerseys — adults and kids. Tell us what you want and we’ll source it.',
 });
 ---
 <BaseLayout lang={lang} title={seo.title} description={seo.description} canonical={seo.canonical}>
-  <section class="max-w-6xl mx-auto px-4 py-12">
+  <section class="catalog max-w-6xl mx-auto px-4 py-12">
     <div class="flex flex-wrap items-end justify-between gap-4">
       <div>
         <h1 class="text-4xl font-extrabold">{t('cat.order.title', lang)}</h1>
@@ -33,7 +34,10 @@ const seo = buildPageSeo({
           {lang === 'pt' ? 'Prazo típico: 2-3 semanas' : 'Typical lead time: 2-3 weeks'}
         </p>
       </div>
-      <WhatsAppButton href={wa} label={lang === 'pt' ? 'Pedir camisola específica' : 'Request a specific jersey'} variant="outline" />
+      <div class="flex flex-wrap items-center gap-3">
+        <AudienceFilter lang={lang} group="order" />
+        <WhatsAppButton href={wa} label={lang === 'pt' ? 'Pedir específica' : 'Request specific'} variant="outline" />
+      </div>
     </div>
 
     {products.length === 0
@@ -46,3 +50,8 @@ const seo = buildPageSeo({
     }
   </section>
 </BaseLayout>
+
+<style>
+  .catalog:has(input[id$="-kids"]:checked)  .product-card[data-audience="adult"] { display: none; }
+  .catalog:has(input[id$="-adult"]:checked) .product-card[data-audience="kids"]  { display: none; }
+</style>

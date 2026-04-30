@@ -1,0 +1,52 @@
+---
+import type { Lang } from '@/lib/i18n';
+import { t } from '@/lib/i18n';
+
+interface Props {
+  lang: Lang;
+  /** unique key per page so multiple filters on a page don't collide */
+  group: string;
+}
+
+const { lang, group } = Astro.props;
+const idAll   = `aud-${group}-all`;
+const idKids  = `aud-${group}-kids`;
+const idAdult = `aud-${group}-adult`;
+const name    = `aud-${group}`;
+---
+<!-- Hidden radios + visible labels. CSS-only filter via :has() on .catalog wrapper. -->
+<input class="sr-only" type="radio" name={name} id={idAll}   checked />
+<input class="sr-only" type="radio" name={name} id={idKids} />
+<input class="sr-only" type="radio" name={name} id={idAdult} />
+
+<div class="audience-filter inline-flex items-center gap-1 p-1 rounded-full border border-brand-line bg-brand-darker">
+  <label for={idAll}   class="aud-chip">{t('audience.all', lang)}</label>
+  <label for={idKids}  class="aud-chip">{t('audience.kids', lang)}</label>
+  <label for={idAdult} class="aud-chip">{t('audience.adult', lang)}</label>
+</div>
+
+<style>
+  .aud-chip {
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    color: var(--color-brand-muted);
+    transition: background-color 150ms, color 150ms;
+  }
+  .aud-chip:hover {
+    color: var(--color-brand-light);
+  }
+
+  /* Selected state — scoped via :has() on the catalog wrapper. */
+  .catalog:has(input[id$="-all"]:checked)   .aud-chip[for$="-all"],
+  .catalog:has(input[id$="-kids"]:checked)  .aud-chip[for$="-kids"],
+  .catalog:has(input[id$="-adult"]:checked) .aud-chip[for$="-adult"] {
+    background: var(--color-brand-gold);
+    color: var(--color-brand-darker);
+  }
+</style>

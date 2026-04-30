@@ -1,6 +1,7 @@
 export type Availability = 'in_stock' | 'pre_order' | 'sold_out';
 export type KitType = 'home' | 'away' | 'third' | 'goalkeeper' | 'special';
 export type Version = 'adepto' | 'player' | 'retro';
+export type Audience = 'adult' | 'kids';
 
 export type Product = {
   id: string;
@@ -10,6 +11,7 @@ export type Product = {
   season: string;
   kitType: KitType;
   version: Version;
+  audience: Audience;
   price: number;
   sizes: string[];
   availability: Availability;

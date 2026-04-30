@@ -55,6 +55,12 @@ const dict = {
   'product.new':        { pt: 'Novidade',                 en: 'New' },
   'product.season':     { pt: 'Época',                    en: 'Season' },
 
+  // audience
+  'audience.all':       { pt: 'Todos',                    en: 'All' },
+  'audience.adult':     { pt: 'Adultos',                  en: 'Adults' },
+  'audience.kids':      { pt: 'Kids',                     en: 'Kids' },
+  'product.kids':       { pt: 'Kids',                     en: 'Kids' },
+
   // generic
   'cta.viewAll':        { pt: 'Ver todos',                en: 'View all' },
   'footer.tagline':     { pt: 'Camisolas para verdadeiros adeptos.', en: 'Jerseys for real fans.' },
