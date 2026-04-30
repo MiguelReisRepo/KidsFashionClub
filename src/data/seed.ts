@@ -280,7 +280,7 @@ export const products: Product[] = [
     sizes: KIDS_BIG_ONLY,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/barcelona-yamal-kids-front.jpg', '/products/barcelona-yamal-kids-back.jpg'],
+    images: ['/products/BarcelonaKidsFront.jpg', '/products/BarcelonaKidsBack.jpg'],
     description: {
       pt: 'Conjunto kids FC Barcelona principal 2024/25 — t-shirt + calções, já personalizado com LAMINE YAMAL #10.',
       en: 'FC Barcelona 2024/25 home kids kit — t-shirt + shorts, pre-printed with LAMINE YAMAL #10.',
@@ -301,7 +301,7 @@ export const products: Product[] = [
     sizes: KIDS_BIG_ONLY,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/portugal-ronaldo-home-kids-front.jpg', '/products/portugal-ronaldo-home-kids-back.jpg'],
+    images: ['/products/PortugalRedKidsFront.jpg', '/products/PortugalRedKidsBack.jpg'],
     description: {
       pt: 'Conjunto kids Portugal principal 2024/25 — t-shirt + calções, já personalizado com RONALDO #7.',
       en: 'Portugal 2024/25 home kids kit — t-shirt + shorts, pre-printed with RONALDO #7.',
@@ -322,7 +322,7 @@ export const products: Product[] = [
     sizes: KIDS_BIG_ONLY,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/portugal-ronaldo-away-kids-front.jpg', '/products/portugal-ronaldo-away-kids-back.jpg'],
+    images: ['/products/PortugalWhiteKidsFront.jpg', '/products/PortugalWhiteKidsBack.jpg'],
     description: {
       pt: 'Conjunto kids Portugal alternativa 2024/25 — t-shirt + calções, já personalizado com RONALDO #7.',
       en: 'Portugal 2024/25 away kids kit — t-shirt + shorts, pre-printed with RONALDO #7.',
@@ -344,7 +344,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/sporting-kids-encomenda-front.jpg', '/products/sporting-kids-encomenda-back.jpg'],
+    images: ['/products/SportingKidsFront.jpg', '/products/SportingKidsBack.jpg'],
     description: {
       pt: 'Conjunto kids Sporting CP 2024/25 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Sporting CP 2024/25 kids kit — t-shirt + shorts, pre-order. Fan version.',
@@ -365,7 +365,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/porto-kids-encomenda-front.jpg', '/products/porto-kids-encomenda-back.jpg'],
+    images: ['/products/PortoKidsFront.jpg', '/products/PortoKidsBack.jpg'],
     description: {
       pt: 'Conjunto kids FC Porto 2024/25 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'FC Porto 2024/25 kids kit — t-shirt + shorts, pre-order. Fan version.',
@@ -386,7 +386,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/benfica-kids-encomenda-front.jpg', '/products/benfica-kids-encomenda-back.jpg'],
+    images: ['/products/BenficaKidsFront.jpg', '/products/BenficaKidsBack.jpg'],
     description: {
       pt: 'Conjunto kids SL Benfica 2024/25 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SL Benfica 2024/25 kids kit — t-shirt + shorts, pre-order. Fan version.',
