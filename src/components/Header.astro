@@ -13,7 +13,9 @@ const { lang, altPath, altLang } = Astro.props;
 const r = ROUTES[lang];
 const home = `/${lang}`;
 ---
-<header class="border-b border-brand-line bg-brand-darker/80 backdrop-blur sticky top-0 z-40">
+<header class="site-header border-b border-brand-line bg-brand-darker/85 backdrop-blur sticky top-0 z-40">
+  <input type="checkbox" id="mobile-nav-toggle" class="sr-only" aria-label="Toggle menu" />
+
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
     <a href={home} class="flex items-center gap-2 group">
       <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-gold text-brand-darker font-extrabold">K</span>
@@ -28,6 +30,67 @@ const home = `/${lang}`;
       <a href={r.faq}   class="hover:text-brand-gold transition-colors">{t('nav.faq', lang)}</a>
     </nav>
 
-    <LanguageSwitcher altLang={altLang} altPath={altPath} />
+    <div class="flex items-center gap-2">
+      <LanguageSwitcher altLang={altLang} altPath={altPath} />
+
+      <label
+        for="mobile-nav-toggle"
+        class="hamburger md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-brand-line cursor-pointer hover:border-brand-gold transition-colors"
+        aria-label="Toggle menu"
+      >
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </label>
+    </div>
+  </div>
+
+  <!-- Mobile drawer (CSS-only via :has() on parent) -->
+  <div class="mobile-drawer md:hidden">
+    <nav class="max-w-6xl mx-auto px-4 py-2 flex flex-col">
+      <a href={r.stock}    class="drawer-link">{t('nav.stock', lang)}</a>
+      <a href={r.order}    class="drawer-link">{t('nav.order', lang)}</a>
+      <a href={r.how}      class="drawer-link">{t('nav.how', lang)}</a>
+      <a href={r.about}    class="drawer-link">{t('nav.about', lang)}</a>
+      <a href={r.faq}      class="drawer-link">{t('nav.faq', lang)}</a>
+      <a href={r.shipping} class="drawer-link">{t('nav.shipping', lang)}</a>
+    </nav>
   </div>
 </header>
+
+<style>
+  .hamburger svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .hamburger .icon-close { display: none; }
+
+  .site-header:has(#mobile-nav-toggle:checked) .hamburger .icon-open { display: none; }
+  .site-header:has(#mobile-nav-toggle:checked) .hamburger .icon-close { display: inline-block; }
+
+  .mobile-drawer {
+    overflow: hidden;
+    max-height: 0;
+    border-top: 1px solid var(--color-brand-line);
+    border-top-color: transparent;
+    transition: max-height 280ms ease, border-top-color 280ms ease;
+  }
+  .site-header:has(#mobile-nav-toggle:checked) .mobile-drawer {
+    max-height: 60vh;
+    border-top-color: var(--color-brand-line);
+  }
+
+  .drawer-link {
+    display: block;
+    padding: 0.85rem 0.25rem;
+    border-bottom: 1px solid var(--color-brand-line);
+    font-size: 0.95rem;
+    color: var(--color-brand-light);
+    transition: color 150ms;
+  }
+  .drawer-link:last-child { border-bottom: none; }
+  .drawer-link:hover { color: var(--color-brand-gold); }
+</style>
