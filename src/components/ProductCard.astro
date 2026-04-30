@@ -37,6 +37,7 @@ const hasMultipleImages = product.images.length > 1;
   href={href}
   data-audience={product.audience}
   data-search-text={searchText}
+  data-card-gallery
   class="product-card group block bg-brand-darker border border-brand-line rounded-2xl overflow-hidden hover:border-brand-gold transition-colors"
 >
   <div class="aspect-[4/5] bg-brand-line relative overflow-hidden">
@@ -45,7 +46,8 @@ const hasMultipleImages = product.images.length > 1;
         src={src}
         alt={i === 0 ? product.name[lang] : ''}
         loading={i === 0 ? 'eager' : 'lazy'}
-        class:list={['card-img', { 'card-img-back': i === 1 }]}
+        data-card-img={i}
+        class:list={['card-img', { 'card-img-active': i === 0 }]}
         onerror="this.style.background='linear-gradient(135deg,#1F1F1F,#0A0A0A)';this.removeAttribute('src');"
       />
     ))}
@@ -67,9 +69,28 @@ const hasMultipleImages = product.images.length > 1;
     </span>
 
     {hasMultipleImages && (
-      <div class="card-dots" aria-hidden="true">
-        {product.images.map(() => <span></span>)}
-      </div>
+      <>
+        <button type="button" class="card-arrow card-prev" data-card-action="prev" aria-label="Previous image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button type="button" class="card-arrow card-next" data-card-action="next" aria-label="Next image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="card-dots" aria-hidden="true">
+          {product.images.map((_, i) => (
+            <button
+              type="button"
+              data-card-dot={i}
+              class:list={['card-dot', { active: i === 0 }]}
+              aria-label={`Show image ${i + 1}`}
+            ></button>
+          ))}
+        </div>
+      </>
     )}
   </div>
 
@@ -97,18 +118,47 @@ const hasMultipleImages = product.images.length > 1;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 350ms ease, transform 600ms ease;
-  }
-  .card-img-back {
     opacity: 0;
+    transition: opacity 250ms ease, transform 600ms ease;
   }
-  /* Hover: scale up & swap front -> back */
-  .product-card:hover .card-img {
-    transform: scale(1.04);
-  }
-  .product-card:hover .card-img-back {
+  .card-img-active {
     opacity: 1;
   }
+  .product-card:hover .card-img-active {
+    transform: scale(1.04);
+  }
+
+  .card-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background: rgba(10, 10, 10, 0.65);
+    color: var(--color-brand-light);
+    border: 1px solid var(--color-brand-line);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.85;
+    transition: background-color 150ms, color 150ms, opacity 150ms;
+  }
+  .card-arrow:hover {
+    background: var(--color-brand-gold);
+    color: var(--color-brand-darker);
+    opacity: 1;
+  }
+  .card-arrow svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+  .card-prev { left: 0.5rem; }
+  .card-next { right: 0.5rem; }
 
   .card-dots {
     position: absolute;
@@ -121,22 +171,54 @@ const hasMultipleImages = product.images.length > 1;
     padding: 0.3rem 0.55rem;
     border-radius: 9999px;
     backdrop-filter: blur(4px);
-    z-index: 10;
+    z-index: 5;
   }
-  .card-dots span {
-    width: 5px;
-    height: 5px;
+  .card-dot {
+    width: 6px;
+    height: 6px;
     border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 150ms;
   }
-  .card-dots span:first-child {
-    background: var(--color-brand-gold);
-  }
-  /* When hovering, swap which dot is active */
-  .product-card:hover .card-dots span:first-child {
-    background: rgba(255, 255, 255, 0.55);
-  }
-  .product-card:hover .card-dots span:nth-child(2) {
-    background: var(--color-brand-gold);
-  }
+  .card-dot:hover { background: rgba(255, 255, 255, 0.8); }
+  .card-dot.active { background: var(--color-brand-gold); }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-card-gallery]').forEach((card) => {
+    const imgs = card.querySelectorAll<HTMLImageElement>('[data-card-img]');
+    const dots = card.querySelectorAll<HTMLButtonElement>('[data-card-dot]');
+    const total = imgs.length;
+    if (total <= 1) return;
+
+    let current = 0;
+    function show(next: number) {
+      current = ((next % total) + total) % total;
+      imgs.forEach((img, i) => img.classList.toggle('card-img-active', i === current));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+    }
+
+    function bind(selector: string, handler: (e: Event) => void) {
+      card.querySelectorAll(selector).forEach((el) => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          handler(e);
+        });
+      });
+    }
+
+    bind('[data-card-action="prev"]', () => show(current - 1));
+    bind('[data-card-action="next"]', () => show(current + 1));
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        show(i);
+      });
+    });
+  });
+</script>
