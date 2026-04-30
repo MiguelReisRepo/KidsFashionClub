@@ -31,6 +31,8 @@ const dict = {
   'home.stock.title':   { pt: 'Em Stock',                 en: 'In Stock' },
   'home.stock.sub':     { pt: 'Envio em 24-48h',          en: 'Ships in 24-48h' },
   'home.new.title':     { pt: 'Novidades da Semana',      en: "This Week's Drops" },
+  'home.all.title':     { pt: 'Catálogo Completo',         en: 'Full Catalog' },
+  'home.all.sub':       { pt: 'Todas as camisolas e conjuntos disponíveis', en: 'Every jersey and kit we have' },
   'home.order.title':   { pt: 'Encomendar Camisola Específica', en: 'Order a Specific Jersey' },
   'home.order.body':    { pt: 'Não vês a tua camisola? Diz-nos qual é via WhatsApp e tratamos da disponibilidade.', en: 'Can’t find your jersey? Tell us via WhatsApp and we’ll source it.' },
   'home.how.title':     { pt: 'Como Funciona',            en: 'How It Works' },

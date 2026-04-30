@@ -2,10 +2,11 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
+import AudienceFilter from '@/components/AudienceFilter.astro';
 import { LANGS, t, type Lang, ROUTES } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
 import { customOrderLink } from '@/lib/whatsapp';
-import { inStockProducts, newProducts, featuredProducts } from '@/data/seed';
+import { inStockProducts, newProducts, featuredProducts, products } from '@/data/seed';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -17,6 +18,7 @@ const r = ROUTES[lang];
 const stock     = inStockProducts().slice(0, 4);
 const news      = newProducts().slice(0, 4);
 const featured  = featuredProducts().slice(0, 4);
+const all       = products;
 const wa        = customOrderLink(lang);
 
 const seo = buildPageSeo({
@@ -70,6 +72,25 @@ const seo = buildPageSeo({
       {news.map((p) => <ProductCard product={p} lang={lang} />)}
     </div>
   </section>
+
+  <!-- Catálogo Completo -->
+  <section class="catalog max-w-6xl mx-auto px-4 py-16 border-t border-brand-line">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-3xl font-extrabold">{t('home.all.title', lang)}</h2>
+        <p class="text-brand-muted text-sm mt-1">{t('home.all.sub', lang)} — {all.length}</p>
+      </div>
+      <AudienceFilter lang={lang} group="home" />
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {all.map((p) => <ProductCard product={p} lang={lang} />)}
+    </div>
+  </section>
+
+  <style>
+    .catalog:has(input[id$="-kids"]:checked)  .product-card[data-audience="adult"] { display: none; }
+    .catalog:has(input[id$="-adult"]:checked) .product-card[data-audience="kids"]  { display: none; }
+  </style>
 
   <!-- Encomendar específica -->
   <section class="max-w-6xl mx-auto px-4 py-16 border-t border-brand-line">
