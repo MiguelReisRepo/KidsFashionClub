@@ -63,6 +63,10 @@ const dict = {
   'audience.kids':      { pt: 'Kids',                     en: 'Kids' },
   'product.kids':       { pt: 'Kids',                     en: 'Kids' },
 
+  // search
+  'search.placeholder': { pt: 'Procurar equipa ou jogador…', en: 'Search team or player…' },
+  'search.empty':       { pt: 'Sem resultados.',           en: 'No results.' },
+
   // form
   'product.size.pick':  { pt: 'Seleciona um tamanho',     en: 'Pick a size' },
   'product.personalize': { pt: 'Personalizar com nome e número', en: 'Add name & number' },

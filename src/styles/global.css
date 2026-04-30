@@ -28,3 +28,8 @@ body {
   background: var(--color-brand-gold);
   color: var(--color-brand-darker);
 }
+
+/* Search filter: hide cards that don't match the active query. */
+.product-card[data-search-hide] {
+  display: none !important;
+}

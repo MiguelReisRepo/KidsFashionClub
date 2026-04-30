@@ -21,17 +21,36 @@ const availClass =
   product.availability === 'in_stock'  ? 'bg-brand-gold text-brand-darker'
   : product.availability === 'pre_order' ? 'border border-brand-gold text-brand-gold'
   : 'bg-brand-line text-brand-muted';
+
+const searchText = [
+  product.team,
+  product.name[lang],
+  product.season,
+  product.kitType,
+  product.version,
+  product.audience,
+].join(' ');
+
+const hasMultipleImages = product.images.length > 1;
 ---
-<a href={href} data-audience={product.audience} class="product-card group block bg-brand-darker border border-brand-line rounded-2xl overflow-hidden hover:border-brand-gold transition-colors">
+<a
+  href={href}
+  data-audience={product.audience}
+  data-search-text={searchText}
+  class="product-card group block bg-brand-darker border border-brand-line rounded-2xl overflow-hidden hover:border-brand-gold transition-colors"
+>
   <div class="aspect-[4/5] bg-brand-line relative overflow-hidden">
-    <img
-      src={product.images[0]}
-      alt={product.name[lang]}
-      loading="lazy"
-      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-      onerror="this.style.background='linear-gradient(135deg,#1F1F1F,#0A0A0A)';this.removeAttribute('src');"
-    />
-    <div class="absolute top-3 left-3 flex flex-col gap-1">
+    {product.images.map((src, i) => (
+      <img
+        src={src}
+        alt={i === 0 ? product.name[lang] : ''}
+        loading={i === 0 ? 'eager' : 'lazy'}
+        class:list={['card-img', { 'card-img-back': i === 1 }]}
+        onerror="this.style.background='linear-gradient(135deg,#1F1F1F,#0A0A0A)';this.removeAttribute('src');"
+      />
+    ))}
+
+    <div class="absolute top-3 left-3 flex flex-col gap-1 z-10">
       {product.isNew && (
         <span class="text-[10px] uppercase tracking-widest bg-brand-gold text-brand-darker font-bold px-2 py-1 rounded">
           {t('product.new', lang)}
@@ -43,10 +62,17 @@ const availClass =
         </span>
       )}
     </div>
-    <span class={`absolute top-3 right-3 text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded ${availClass}`}>
+    <span class:list={['absolute top-3 right-3 text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded z-10', availClass]}>
       {availLabel}
     </span>
+
+    {hasMultipleImages && (
+      <div class="card-dots" aria-hidden="true">
+        {product.images.map(() => <span></span>)}
+      </div>
+    )}
   </div>
+
   <div class="p-4">
     <div class="text-xs text-brand-muted">{product.team} · {product.season}</div>
     <h3 class="font-semibold mt-1 group-hover:text-brand-gold transition-colors">{product.name[lang]}</h3>
@@ -63,3 +89,54 @@ const availClass =
     )}
   </div>
 </a>
+
+<style>
+  .card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 350ms ease, transform 600ms ease;
+  }
+  .card-img-back {
+    opacity: 0;
+  }
+  /* Hover: scale up & swap front -> back */
+  .product-card:hover .card-img {
+    transform: scale(1.04);
+  }
+  .product-card:hover .card-img-back {
+    opacity: 1;
+  }
+
+  .card-dots {
+    position: absolute;
+    bottom: 0.65rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.35rem;
+    background: rgba(10, 10, 10, 0.6);
+    padding: 0.3rem 0.55rem;
+    border-radius: 9999px;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+  }
+  .card-dots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.55);
+  }
+  .card-dots span:first-child {
+    background: var(--color-brand-gold);
+  }
+  /* When hovering, swap which dot is active */
+  .product-card:hover .card-dots span:first-child {
+    background: rgba(255, 255, 255, 0.55);
+  }
+  .product-card:hover .card-dots span:nth-child(2) {
+    background: var(--color-brand-gold);
+  }
+</style>

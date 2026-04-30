@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
 import AudienceFilter from '@/components/AudienceFilter.astro';
+import SearchBar from '@/components/SearchBar.astro';
 import { LANGS, t, type Lang } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
 import { customOrderLink } from '@/lib/whatsapp';
@@ -34,7 +35,8 @@ const seo = buildPageSeo({
           {lang === 'pt' ? 'Prazo típico: 2-3 semanas' : 'Typical lead time: 2-3 weeks'}
         </p>
       </div>
-      <div class="flex flex-wrap items-center gap-3">
+      <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+        <SearchBar lang={lang} />
         <AudienceFilter lang={lang} group="order" />
         <WhatsAppButton href={wa} label={lang === 'pt' ? 'Pedir específica' : 'Request specific'} variant="outline" />
       </div>

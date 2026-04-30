@@ -1,0 +1,97 @@
+---
+import type { Lang } from '@/lib/i18n';
+import { t } from '@/lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+<div class="search-bar relative w-full sm:w-72">
+  <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7"/>
+    <path d="m21 21-4.35-4.35"/>
+  </svg>
+  <input
+    type="search"
+    data-product-search
+    placeholder={t('search.placeholder', lang)}
+    class="search-input"
+    autocomplete="off"
+    spellcheck="false"
+  />
+</div>
+
+<p class="search-empty hidden text-brand-muted text-sm py-12 text-center" data-search-empty>
+  {t('search.empty', lang)}
+</p>
+
+<style>
+  .search-bar {
+    display: inline-block;
+  }
+  .search-icon {
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    color: var(--color-brand-muted);
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--color-brand-darker);
+    border: 1px solid var(--color-brand-line);
+    border-radius: 9999px;
+    color: var(--color-brand-light);
+    font-size: 0.875rem;
+    padding: 0.55rem 1rem 0.55rem 2.4rem;
+    transition: border-color 150ms;
+  }
+  .search-input:focus {
+    outline: none;
+    border-color: var(--color-brand-gold);
+  }
+  .search-input::placeholder {
+    color: var(--color-brand-muted);
+  }
+  /* Cancel cross styling in webkit */
+  .search-input::-webkit-search-cancel-button {
+    cursor: pointer;
+    filter: invert(0.6);
+  }
+</style>
+
+<script>
+  function normalize(str: string) {
+    return str.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+  }
+
+  document.querySelectorAll<HTMLInputElement>('[data-product-search]').forEach((input) => {
+    const catalog = (input.closest('.catalog') ?? document.body) as HTMLElement;
+    const cards = catalog.querySelectorAll<HTMLElement>('[data-search-text]');
+    const empty = catalog.querySelector<HTMLElement>('[data-search-empty]');
+
+    function update() {
+      const q = normalize(input.value.trim());
+      cards.forEach((card) => {
+        const text = card.dataset.searchText ?? '';
+        const match = !q || normalize(text).includes(q);
+        card.toggleAttribute('data-search-hide', !match);
+      });
+      if (!empty) return;
+      requestAnimationFrame(() => {
+        let visible = 0;
+        cards.forEach((c) => {
+          if (getComputedStyle(c).display !== 'none') visible += 1;
+        });
+        empty.classList.toggle('hidden', visible > 0);
+      });
+    }
+
+    input.addEventListener('input', update);
+    input.addEventListener('search', update);
+  });
+</script>
