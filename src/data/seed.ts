@@ -81,7 +81,8 @@ export const products: Product[] = [
   {
     id: '106',
     slug: 'barcelona-yamal-kids-2024-25',
-    name: { pt: 'FC Barcelona Principal Kids 2025/26', en: 'FC Barcelona Home Kids 2025/26' },
+    name: { pt: 'FC Barcelona Lamine Yamal #10 Kids 2025/26', en: 'FC Barcelona Lamine Yamal #10 Kids 2025/26' },
+    nameClean: { pt: 'FC Barcelona Principal Kids 2025/26', en: 'FC Barcelona Home Kids 2025/26' },
     team: 'FC Barcelona',
     season: '2025/26',
     kitType: 'home',
@@ -102,7 +103,8 @@ export const products: Product[] = [
   {
     id: '107',
     slug: 'portugal-ronaldo-principal-kids-2024-25',
-    name: { pt: 'Portugal Principal Kids 2025/26', en: 'Portugal Home Kids 2025/26' },
+    name: { pt: 'Portugal Ronaldo #7 Principal Kids 2025/26', en: 'Portugal Ronaldo #7 Home Kids 2025/26' },
+    nameClean: { pt: 'Portugal Principal Kids 2025/26', en: 'Portugal Home Kids 2025/26' },
     team: 'Seleção Nacional',
     season: '2025/26',
     kitType: 'home',
@@ -123,7 +125,8 @@ export const products: Product[] = [
   {
     id: '108',
     slug: 'portugal-ronaldo-alternativa-kids-2024-25',
-    name: { pt: 'Portugal Alternativa Kids 2025/26', en: 'Portugal Away Kids 2025/26' },
+    name: { pt: 'Portugal Ronaldo #7 Alternativa Kids 2025/26', en: 'Portugal Ronaldo #7 Away Kids 2025/26' },
+    nameClean: { pt: 'Portugal Alternativa Kids 2025/26', en: 'Portugal Away Kids 2025/26' },
     team: 'Seleção Nacional',
     season: '2025/26',
     kitType: 'away',

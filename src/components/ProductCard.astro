@@ -7,9 +7,13 @@ import { leagueForTeam } from '@/data/seed';
 interface Props {
   product: Product;
   lang: Lang;
+  /** When true and product has `nameClean`, render the cleaner name (used on /order). */
+  useCleanName?: boolean;
 }
 
-const { product, lang } = Astro.props;
+const { product, lang, useCleanName = false } = Astro.props;
+
+const displayName = (useCleanName && product.nameClean) ? product.nameClean[lang] : product.name[lang];
 
 const href = `/${lang}/jersey/${product.slug}`;
 
@@ -104,7 +108,7 @@ const hasMultipleImages = product.images.length > 1;
 
   <div class="p-4">
     <div class="text-xs text-brand-muted">{product.team} · {product.season}</div>
-    <h3 class="font-semibold mt-1 group-hover:text-brand-gold transition-colors">{product.name[lang]}</h3>
+    <h3 class="font-semibold mt-1 group-hover:text-brand-gold transition-colors">{displayName}</h3>
     <div class="mt-3 flex items-center justify-between">
       <span class="text-lg font-bold">{product.price.toFixed(2)}€</span>
       <span class="text-xs text-brand-muted">

@@ -18,6 +18,8 @@ export type Product = {
   shippingDays: number;
   images: string[];
   description: { pt: string; en: string };
+  /** Optional simpler display name used on the pre-order catalog (e.g. without pre-printed player name). */
+  nameClean?: { pt: string; en: string };
   /** When present the product can be personalized with name + number for an extra fee. */
   personalization?: { price: number };
   isNew?: boolean;
