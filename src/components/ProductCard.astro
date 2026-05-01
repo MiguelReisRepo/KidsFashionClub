@@ -56,7 +56,12 @@ const hasMultipleImages = product.images.length > 1;
     ))}
 
     <div class="absolute top-3 left-3 flex flex-col gap-1 z-10">
-      {product.isNew && (
+      {product.isClearance && (
+        <span class="text-[10px] uppercase tracking-widest bg-red-600 text-white font-bold px-2 py-1 rounded">
+          {lang === 'pt' ? 'Promoção' : 'Sale'}
+        </span>
+      )}
+      {product.isNew && !product.isClearance && (
         <span class="text-[10px] uppercase tracking-widest bg-brand-gold text-brand-darker font-bold px-2 py-1 rounded">
           {t('product.new', lang)}
         </span>

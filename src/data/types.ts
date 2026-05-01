@@ -22,4 +22,6 @@ export type Product = {
   personalization?: { price: number };
   isNew?: boolean;
   isFeatured?: boolean;
+  /** Marks a product as a clearance / promotional sale (renders a "Promoção" badge). */
+  isClearance?: boolean;
 };
