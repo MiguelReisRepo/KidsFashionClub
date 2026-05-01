@@ -65,13 +65,13 @@ export const products: Product[] = [
   {
     id: '223',
     slug: 'portugal-principal-kids-2024-promocao',
-    name: { pt: 'Portugal Principal Kids — Stock Limitado', en: 'Portugal Home Kids — Limited Stock' },
+    name: { pt: 'Portugal Ronaldo #7 Principal Kids — Stock Limitado', en: 'Portugal Ronaldo #7 Home Kids — Limited Stock' },
     team: 'Seleção Nacional', season: '2024', kitType: 'home', version: 'adepto', audience: 'kids',
     price: 12.00, sizes: ['28'], availability: 'in_stock', shippingDays: 2,
     images: ['/products/portugal-kids-home2-front.jpg', '/products/portugal-kids-home2-back.jpg'],
     description: {
-      pt: 'Conjunto kids Portugal — kit antigo em promoção. Apenas tamanho 28 disponível, stock limitado, envio em 24-48h. Sem personalização.',
-      en: 'Portugal home kids kit — older edition on sale. Size 28 only, limited stock, ships in 24-48h. No personalization.',
+      pt: 'Conjunto kids Portugal — kit antigo em promoção, já personalizado com RONALDO #7. Apenas tamanho 28 disponível, stock limitado, envio em 24-48h.',
+      en: 'Portugal home kids kit — older edition on sale, pre-printed with RONALDO #7. Size 28 only, limited stock, ships in 24-48h.',
     },
     isFeatured: true,
     isClearance: true,
