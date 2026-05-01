@@ -45,7 +45,7 @@ export const products: Product[] = [
     sizes: KIDS_BIG_ONLY,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/BarcelonaKidsFront.jpg', '/products/BarcelonaKidsBack.jpg'],
+    images: ['/products/barcelona-kids-yamal-front.jpg', '/products/barcelona-kids-yamal-back.jpg'],
     description: {
       pt: 'Conjunto kids FC Barcelona principal 2025/26 — t-shirt + calções, já personalizado com LAMINE YAMAL #10.',
       en: 'FC Barcelona 2025/26 home kids kit — t-shirt + shorts, pre-printed with LAMINE YAMAL #10.',
@@ -66,7 +66,7 @@ export const products: Product[] = [
     sizes: KIDS_BIG_ONLY,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/PortugalRedKidsFront.jpg', '/products/PortugalRedKidsBack.jpg'],
+    images: ['/products/portugal-kids-ronaldo-home-front.jpg', '/products/portugal-kids-ronaldo-home-back.jpg'],
     description: {
       pt: 'Conjunto kids Portugal principal 2025/26 — t-shirt + calções, já personalizado com RONALDO #7.',
       en: 'Portugal 2025/26 home kids kit — t-shirt + shorts, pre-printed with RONALDO #7.',
@@ -87,7 +87,7 @@ export const products: Product[] = [
     sizes: KIDS_BIG_ONLY,
     availability: 'in_stock',
     shippingDays: 2,
-    images: ['/products/PortugalWhiteKidsFront.jpg', '/products/PortugalWhiteKidsBack.jpg'],
+    images: ['/products/portugal-kids-ronaldo-away-front.jpg', '/products/portugal-kids-ronaldo-away-back.jpg'],
     description: {
       pt: 'Conjunto kids Portugal alternativa 2025/26 — t-shirt + calções, já personalizado com RONALDO #7.',
       en: 'Portugal 2025/26 away kids kit — t-shirt + shorts, pre-printed with RONALDO #7.',
@@ -109,7 +109,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/SportingKidsFront.jpg', '/products/SportingKidsBack.jpg'],
+    images: ['/products/sporting-kids-home-front.jpg', '/products/sporting-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids Sporting CP 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Sporting CP 2025/26 kids kit — t-shirt + shorts, pre-order. Fan version.',
@@ -130,7 +130,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PortoKidsFront.jpg', '/products/PortoKidsBack.jpg'],
+    images: ['/products/porto-kids-home-front.jpg', '/products/porto-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids FC Porto 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'FC Porto 2025/26 kids kit — t-shirt + shorts, pre-order. Fan version.',
@@ -151,7 +151,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BenficaKidsFront.jpg', '/products/BenficaKidsBack.jpg'],
+    images: ['/products/benfica-kids-home-front.jpg', '/products/benfica-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids SL Benfica 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SL Benfica 2025/26 kids kit — t-shirt + shorts, pre-order. Fan version.',
@@ -172,7 +172,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BrasilKidsFront.jpg', '/products/BrasilKidsBack.jpg'],
+    images: ['/products/brasil-kids-home-front.jpg', '/products/brasil-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids Brasil principal 2025/26 — t-shirt amarela + calções azuis, por encomenda. Versão adepto.',
       en: 'Brazil home kids kit 2025/26 — yellow t-shirt + blue shorts, pre-order. Fan version.',
@@ -193,7 +193,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BrasilKidsAlternativeFront.jpg', '/products/BrasilKidsAlternativeBack.jpg'],
+    images: ['/products/brasil-kids-away-front.jpg', '/products/brasil-kids-away-back.jpg'],
     description: {
       pt: 'Conjunto kids Brasil alternativa 2025/26 — t-shirt + calções azuis-escuros, por encomenda. Versão adepto.',
       en: 'Brazil away kids kit 2025/26 — dark blue t-shirt + shorts, pre-order. Fan version.',
@@ -214,7 +214,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BenficaKidsVhilsFront.jpg', '/products/BenficaKidsVhilsBack.jpg'],
+    images: ['/products/benfica-kids-vhils-front.jpg', '/products/benfica-kids-vhils-back.jpg'],
     description: {
       pt: 'Conjunto kids SL Benfica edição especial Vhils — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SL Benfica Vhils special edition kids kit — t-shirt + shorts, pre-order. Fan version.',
@@ -236,7 +236,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PortoKidsAwayFront.jpg', '/products/PortoKidsAwayBack.jpg'],
+    images: ['/products/porto-kids-away-front.jpg', '/products/porto-kids-away-back.jpg'],
     description: {
       pt: 'Conjunto kids FC Porto alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'FC Porto away kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -257,7 +257,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PortugalKidsBlackFront.jpg', '/products/PortugalKidsBlackBack.jpg'],
+    images: ['/products/portugal-kids-black-front.jpg', '/products/portugal-kids-black-back.jpg'],
     description: {
       pt: 'Conjunto kids Portugal edição preta 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Portugal black edition kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -279,7 +279,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/RealMadridKidsFront.jpg', '/products/RealMadridKidsBack.jpg'],
+    images: ['/products/real-madrid-kids-home-front.jpg', '/products/real-madrid-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids Real Madrid principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Real Madrid home kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -301,7 +301,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/SportingKidsRosaFront.jpg', '/products/SportingKidsRosaBack.jpg'],
+    images: ['/products/sporting-kids-rosa-front.jpg', '/products/sporting-kids-rosa-back.jpg'],
     description: {
       pt: 'Conjunto kids Sporting CP rosa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Sporting CP pink kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -322,7 +322,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PortoRosaKidsFront.jpg', '/products/PortoRosaKidsBack.jpg'],
+    images: ['/products/porto-kids-rosa-front.jpg', '/products/porto-kids-rosa-back.jpg'],
     description: {
       pt: 'Conjunto kids FC Porto rosa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'FC Porto pink kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -344,7 +344,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PSGKidFront.jpg', '/products/PSGKidBack.jpg'],
+    images: ['/products/psg-kids-home-front.jpg', '/products/psg-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids PSG principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'PSG home kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -365,7 +365,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PSGKidAwayFront.jpg', '/products/PSGKidAwayBack.jpg'],
+    images: ['/products/psg-kids-away-front.jpg', '/products/psg-kids-away-back.jpg'],
     description: {
       pt: 'Conjunto kids PSG alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'PSG away kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -388,7 +388,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/MarseilleAdultFront.jpg', '/products/MarseilleAdultBack.jpg'],
+    images: ['/products/marseille-adult-home-front.jpg', '/products/marseille-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto Olympique Marseille principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Olympique Marseille home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -409,7 +409,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/MarseilleAdultAwayFront.jpg', '/products/MarseilleAdultAwayBack.jpg'],
+    images: ['/products/marseille-adult-away-front.jpg', '/products/marseille-adult-away-back.jpg'],
     description: {
       pt: 'Conjunto adulto Olympique Marseille alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Olympique Marseille away adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -430,7 +430,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/MarseilleKidsFront.jpg', '/products/MarseilleKidsBack.jpg'],
+    images: ['/products/marseille-kids-home-front.jpg', '/products/marseille-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids Olympique Marseille principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Olympique Marseille home kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -451,7 +451,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/MarseilleKidsAwayFront.jpg', '/products/MarseilleKidsAwayBack.jpg'],
+    images: ['/products/marseille-kids-away-front.jpg', '/products/marseille-kids-away-back.jpg'],
     description: {
       pt: 'Conjunto kids Olympique Marseille alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Olympique Marseille away kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -474,7 +474,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/LyonAdultsFront.jpg', '/products/LyonAdultsBack.jpg'],
+    images: ['/products/lyon-adult-home-front.jpg', '/products/lyon-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto Olympique Lyon principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Olympique Lyon home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -495,7 +495,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/LyonAdultsAwayFront.jpg', '/products/LyonAdultsAwayBack.jpg'],
+    images: ['/products/lyon-adult-away-front.jpg', '/products/lyon-adult-away-back.jpg'],
     description: {
       pt: 'Conjunto adulto Olympique Lyon alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Olympique Lyon away adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -518,7 +518,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BragaAdultsFront.jpeg', '/products/BragaAdultsBack.jpeg'],
+    images: ['/products/braga-adult-home-front.jpg', '/products/braga-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto SC Braga principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SC Braga home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -539,7 +539,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BragaAdultsAwayFront.jpg', '/products/BragaAdultsAwayBack.jpg'],
+    images: ['/products/braga-adult-away-front.jpg', '/products/braga-adult-away-back.jpg'],
     description: {
       pt: 'Conjunto adulto SC Braga alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SC Braga away adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -560,7 +560,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BragaAdultsKidsFront.jpeg', '/products/BragaAdultsKidsBack.jpeg'],
+    images: ['/products/braga-kids-home-front.jpg', '/products/braga-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids SC Braga principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SC Braga home kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -583,7 +583,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PalmeirasAdultsFront.jpg', '/products/PalmeirasAdultsBack.jpg'],
+    images: ['/products/palmeiras-adult-home-front.jpg', '/products/palmeiras-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto Palmeiras principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Palmeiras home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -604,7 +604,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PalmeirasKidsFront.jpg', '/products/PalmeirasKidsBack.jpg'],
+    images: ['/products/palmeiras-kids-home-front.jpg', '/products/palmeiras-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids Palmeiras principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Palmeiras home kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -627,7 +627,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BenficaAdultFront.jpg', '/products/BenficaAdultBack.jpg'],
+    images: ['/products/benfica-adult-home-front.jpg', '/products/benfica-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto SL Benfica principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SL Benfica home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -648,7 +648,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BenficaAdultAwayFront.jpg', '/products/BenficaAdultAwayBack.jpg'],
+    images: ['/products/benfica-adult-away-front.jpg', '/products/benfica-adult-away-back.jpg'],
     description: {
       pt: 'Conjunto adulto SL Benfica alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SL Benfica away adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -669,7 +669,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BenficaAdultVhilsFront.jpg', '/products/BenficaAdultVhilsBack.jpg'],
+    images: ['/products/benfica-adult-vhils-front.jpg', '/products/benfica-adult-vhils-back.jpg'],
     description: {
       pt: 'Conjunto adulto SL Benfica edição especial Vhils 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'SL Benfica Vhils special edition adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -693,7 +693,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PSGAdultFront.jpg', '/products/PSGAdultBack.jpg'],
+    images: ['/products/psg-adult-home-front.jpg', '/products/psg-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto PSG principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'PSG home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -714,7 +714,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PsgAdultAwayFront.jpg', '/products/PsgAdultAwayBack.jpg'],
+    images: ['/products/psg-adult-away-front.jpg', '/products/psg-adult-away-back.jpg'],
     description: {
       pt: 'Conjunto adulto PSG alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'PSG away adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -735,7 +735,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/PsgAdultJordanFront.jpg', '/products/PsgAdultJordanBack.jpg'],
+    images: ['/products/psg-adult-jordan-front.jpg', '/products/psg-adult-jordan-back.jpg'],
     description: {
       pt: 'Conjunto adulto PSG edição especial Jordan 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'PSG Jordan special edition adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -759,7 +759,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/BarcelonaAdultFront.jpg', '/products/BarcelonaAdultBack.jpg'],
+    images: ['/products/barcelona-adult-home-front.jpg', '/products/barcelona-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto FC Barcelona principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'FC Barcelona home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -781,7 +781,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/RealMadridAdultFront.jpg', '/products/RealMadridAdultBack.jpg'],
+    images: ['/products/real-madrid-adult-home-front.jpg', '/products/real-madrid-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto Real Madrid principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Real Madrid home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -803,7 +803,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/RealMadridAdultAwayFront.jpg', '/products/RealMadridAdultAwayBack.jpg'],
+    images: ['/products/real-madrid-adult-away-front.jpg', '/products/real-madrid-adult-away-back.jpg'],
     description: {
       pt: 'Conjunto adulto Real Madrid alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Real Madrid away adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -824,7 +824,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/AtlMadridAdultFront.jpg', '/products/AtlMadridAdultBack.jpg'],
+    images: ['/products/atletico-madrid-adult-home-front.jpg', '/products/atletico-madrid-adult-home-back.jpg'],
     description: {
       pt: 'Conjunto adulto Atlético Madrid principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Atlético Madrid home adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -845,7 +845,7 @@ export const products: Product[] = [
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/AtlMadridAdultAwayFront.jpg', '/products/AtlMadridAdultAwayBack.jpg'],
+    images: ['/products/atletico-madrid-adult-away-front.jpg', '/products/atletico-madrid-adult-away-back.jpg'],
     description: {
       pt: 'Conjunto adulto Atlético Madrid alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Atlético Madrid away adult kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -866,7 +866,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/AtlMadridKidFront.jpg', '/products/AtlMadridKidBack.jpg'],
+    images: ['/products/atletico-madrid-kids-home-front.jpg', '/products/atletico-madrid-kids-home-back.jpg'],
     description: {
       pt: 'Conjunto kids Atlético Madrid principal 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Atlético Madrid home kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -887,7 +887,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/AtlMadridKidAwayFront.jpg', '/products/AtlMadridKidAwayBack.jpg'],
+    images: ['/products/atletico-madrid-kids-away-front.jpg', '/products/atletico-madrid-kids-away-back.jpg'],
     description: {
       pt: 'Conjunto kids Atlético Madrid alternativa 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Atlético Madrid away kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
@@ -909,7 +909,7 @@ export const products: Product[] = [
     sizes: KIDS_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
-    images: ['/products/SportingKidsSpecialEditionFront.jpg', '/products/SportingKidsSpecialEditionBack.jpg'],
+    images: ['/products/sporting-kids-special-front.jpg', '/products/sporting-kids-special-back.jpg'],
     description: {
       pt: 'Conjunto kids Sporting CP edição especial 2025/26 — t-shirt + calções, por encomenda. Versão adepto.',
       en: 'Sporting CP special edition kids kit 2025/26 — t-shirt + shorts, pre-order. Fan version.',
