@@ -2212,12 +2212,9 @@ export function inStockProducts(audience?: Audience): Product[] {
 }
 
 export function preOrderProducts(audience?: Audience): Product[] {
-  // Por encomenda: todos os pre_order + in_stock (excepto promoções/clearance, que só aparecem em /stock).
+  // Por encomenda: apenas produtos pre_order. Os in_stock (pré-personalizados + clearance) ficam só em /stock.
   return products
-    .filter((p) =>
-      (p.availability === 'pre_order' || (p.availability === 'in_stock' && !p.isClearance))
-      && (!audience || p.audience === audience)
-    )
+    .filter((p) => p.availability === 'pre_order' && (!audience || p.audience === audience))
     .sort(byTeamThenName);
 }
 
