@@ -33,3 +33,14 @@ body {
 .product-card[data-search-hide] {
   display: none !important;
 }
+
+/* A11y: visible focus ring on keyboard navigation only.
+   White contrasts on both dark backgrounds and gold/light accents. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-light);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}

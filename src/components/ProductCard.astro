@@ -51,7 +51,7 @@ const hasMultipleImages = product.images.length > 1;
     {product.images.map((src, i) => (
       <img
         src={src}
-        alt={i === 0 ? product.name[lang] : ''}
+        alt={`${displayName} — ${i === 0 ? (lang === 'pt' ? 'frente' : 'front') : (lang === 'pt' ? 'costas' : 'back')}`}
         loading={i === 0 ? 'eager' : 'lazy'}
         data-card-img={i}
         class:list={['card-img', { 'card-img-active': i === 0 }]}

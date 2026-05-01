@@ -75,6 +75,12 @@ const dict = {
   'search.placeholder': { pt: 'Procurar equipa ou jogador…', en: 'Search team or player…' },
   'search.empty':       { pt: 'Sem resultados.',           en: 'No results.' },
 
+  // trust strip
+  'trust.payment':      { pt: 'MB WAY · Transferência',     en: 'MB WAY · Bank transfer' },
+  'trust.shipping':     { pt: 'Envio PT 2,90€ · 2-3 dias',  en: 'PT shipping €2.90 · 2-3 days' },
+  'trust.returns':      { pt: 'Devolução 14 dias',          en: '14-day returns' },
+  'trust.whatsapp':     { pt: 'WhatsApp em < 1h',           en: 'WhatsApp under 1h' },
+
   // reviews
   'reviews.title':      { pt: 'O que dizem de nós',        en: 'What people say' },
   'reviews.sub':        { pt: 'Avaliações verificadas no Google', en: 'Verified reviews on Google' },

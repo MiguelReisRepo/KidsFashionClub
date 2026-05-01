@@ -21,7 +21,7 @@ const hasMany = images.length > 1;
       {images.map((src, i) => (
         <img
           src={src}
-          alt={i === 0 ? alt : `${alt} (${i + 1})`}
+          alt={`${alt} — ${i === 0 ? 'frente / front' : i === 1 ? 'costas / back' : `vista ${i + 1}`}`}
           loading={i === 0 ? 'eager' : 'lazy'}
           data-index={i}
           class:list={['gallery-image', { active: i === 0 }]}
