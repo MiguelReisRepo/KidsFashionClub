@@ -67,6 +67,10 @@ const dict = {
   'season.all':         { pt: 'Todas',                    en: 'All' },
   'season.label':       { pt: 'Época',                    en: 'Season' },
 
+  // league
+  'league.all':         { pt: 'Todas as ligas',           en: 'All leagues' },
+  'league.label':       { pt: 'Liga',                     en: 'League' },
+
   // search
   'search.placeholder': { pt: 'Procurar equipa ou jogador…', en: 'Search team or player…' },
   'search.empty':       { pt: 'Sem resultados.',           en: 'No results.' },

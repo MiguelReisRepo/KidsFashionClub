@@ -4,6 +4,32 @@ const KIDS_SIZES = ['4-5', '6-7', '8-9', '10-11', '12-13'];
 const KIDS_BIG_ONLY = ['8-9', '10-11', '12-13'];
 const ADULT_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
 
+/** Single source of truth: which league each team belongs to. */
+const TEAM_LEAGUE: Record<string, string> = {
+  // Liga Portugal
+  'FC Porto':            'Liga Portugal',
+  'SL Benfica':          'Liga Portugal',
+  'Sporting CP':         'Liga Portugal',
+  'SC Braga':            'Liga Portugal',
+  // La Liga
+  'FC Barcelona':        'La Liga',
+  'Real Madrid':         'La Liga',
+  'Atlético Madrid':     'La Liga',
+  // Ligue 1
+  'PSG':                 'Ligue 1',
+  'Olympique Marseille': 'Ligue 1',
+  'Olympique Lyon':      'Ligue 1',
+  // Brasileirão
+  'Palmeiras':           'Brasileirão',
+  // Seleções
+  'Seleção Nacional':    'Seleções',
+  'Brasil':              'Seleções',
+};
+
+export function leagueForTeam(team: string): string {
+  return TEAM_LEAGUE[team] ?? 'Outras';
+}
+
 export const products: Product[] = [
   // ─── KIDS · IN-STOCK (pré-personalizados — sem opção de customizar) ──
   {
@@ -358,7 +384,7 @@ export const products: Product[] = [
     kitType: 'home',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -379,7 +405,7 @@ export const products: Product[] = [
     kitType: 'away',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -444,7 +470,7 @@ export const products: Product[] = [
     kitType: 'home',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -465,7 +491,7 @@ export const products: Product[] = [
     kitType: 'away',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -488,7 +514,7 @@ export const products: Product[] = [
     kitType: 'home',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -509,7 +535,7 @@ export const products: Product[] = [
     kitType: 'away',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -553,7 +579,7 @@ export const products: Product[] = [
     kitType: 'home',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -597,7 +623,7 @@ export const products: Product[] = [
     kitType: 'home',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -619,7 +645,7 @@ export const products: Product[] = [
     kitType: 'home',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -641,7 +667,7 @@ export const products: Product[] = [
     kitType: 'away',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -662,7 +688,7 @@ export const products: Product[] = [
     kitType: 'home',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -683,7 +709,7 @@ export const products: Product[] = [
     kitType: 'away',
     version: 'adepto',
     audience: 'adult',
-    price: 20.00,
+    price: 16.00,
     sizes: ADULT_SIZES,
     availability: 'pre_order',
     shippingDays: 18,
@@ -806,4 +832,9 @@ export function allProductsSorted(): Product[] {
 export function uniqueSeasons(): string[] {
   const set = new Set(products.map((p) => p.season));
   return Array.from(set).sort((a, b) => b.localeCompare(a));
+}
+
+/** Unique leagues present in the catalog, alphabetic. */
+export function uniqueLeagues(): string[] {
+  return Array.from(new Set(products.map((p) => leagueForTeam(p.team)))).sort((a, b) => a.localeCompare(b, 'pt'));
 }

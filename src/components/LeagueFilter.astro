@@ -1,0 +1,69 @@
+---
+import type { Lang } from '@/lib/i18n';
+import { t } from '@/lib/i18n';
+
+interface Props {
+  lang: Lang;
+  group: string;
+  leagues: string[];
+}
+
+const { lang, group, leagues } = Astro.props;
+
+/** Sanitise league for use in HTML id (lowercase, no spaces, no diacritics). */
+function key(league: string): string {
+  return league
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+const name  = `league-${group}`;
+const idAll = `league-${group}-all`;
+---
+<input class="sr-only" type="radio" name={name} id={idAll} checked />
+{leagues.map((l) => (
+  <input class="sr-only" type="radio" name={name} id={`league-${group}-${key(l)}`} />
+))}
+
+<div class="league-filter inline-flex items-center gap-1 p-1 rounded-full border border-brand-line bg-brand-darker flex-wrap">
+  <label for={idAll} class="league-chip">{t('league.all', lang)}</label>
+  {leagues.map((l) => (
+    <label for={`league-${group}-${key(l)}`} class="league-chip">{l}</label>
+  ))}
+</div>
+
+<style>
+  .league-chip {
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 0.5rem 0.85rem;
+    border-radius: 9999px;
+    color: var(--color-brand-muted);
+    transition: background-color 150ms, color 150ms;
+    white-space: nowrap;
+  }
+  .league-chip:hover {
+    color: var(--color-brand-light);
+  }
+</style>
+
+<style is:global>
+  .catalog:has(input[id^="league-"][id$="-all"]:checked) .league-chip[for^="league-"][for$="-all"] {
+    background: var(--color-brand-gold);
+    color: var(--color-brand-darker);
+  }
+</style>
+
+{leagues.length > 0 && (
+  <style is:global set:html={leagues.map((l) => {
+    const k = key(l);
+    return `.catalog:has(input[id^="league-"][id$="-${k}"]:checked) .league-chip[for^="league-"][for$="-${k}"]{background:var(--color-brand-gold);color:var(--color-brand-darker);}`
+       + `.catalog:has(input[id^="league-"][id$="-${k}"]:checked) .product-card:not([data-league="${l}"]){display:none;}`;
+  }).join('')}></style>
+)}

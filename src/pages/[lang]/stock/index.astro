@@ -3,10 +3,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import AudienceFilter from '@/components/AudienceFilter.astro';
 import SeasonFilter from '@/components/SeasonFilter.astro';
+import LeagueFilter from '@/components/LeagueFilter.astro';
 import SearchBar from '@/components/SearchBar.astro';
 import { LANGS, t, type Lang } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
-import { inStockProducts, uniqueSeasons } from '@/data/seed';
+import { inStockProducts, uniqueSeasons, uniqueLeagues } from '@/data/seed';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -15,6 +16,7 @@ export function getStaticPaths() {
 const { lang } = Astro.params as { lang: Lang };
 const products = inStockProducts();
 const seasons = uniqueSeasons();
+const leagues = uniqueLeagues();
 
 const seo = buildPageSeo({
   lang,
@@ -35,6 +37,7 @@ const seo = buildPageSeo({
       <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
         <SearchBar lang={lang} />
         <AudienceFilter lang={lang} group="stock" />
+        {leagues.length > 1 && <LeagueFilter lang={lang} group="stock" leagues={leagues} />}
         {seasons.length > 1 && <SeasonFilter lang={lang} group="stock" seasons={seasons} />}
       </div>
     </div>

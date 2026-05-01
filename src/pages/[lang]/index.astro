@@ -4,12 +4,13 @@ import ProductCard from '@/components/ProductCard.astro';
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
 import AudienceFilter from '@/components/AudienceFilter.astro';
 import SeasonFilter from '@/components/SeasonFilter.astro';
+import LeagueFilter from '@/components/LeagueFilter.astro';
 import SearchBar from '@/components/SearchBar.astro';
 import GoogleReviewsBadge from '@/components/GoogleReviewsBadge.astro';
 import { LANGS, t, type Lang, ROUTES } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
 import { customOrderLink } from '@/lib/whatsapp';
-import { inStockProducts, allProductsSorted, uniqueSeasons } from '@/data/seed';
+import { inStockProducts, allProductsSorted, uniqueSeasons, uniqueLeagues } from '@/data/seed';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -21,6 +22,7 @@ const r = ROUTES[lang];
 const stock   = inStockProducts().slice(0, 4);
 const all     = allProductsSorted();
 const seasons = uniqueSeasons();
+const leagues = uniqueLeagues();
 const wa      = customOrderLink(lang);
 
 const seo = buildPageSeo({
@@ -74,6 +76,7 @@ const seo = buildPageSeo({
       <div class="flex flex-wrap items-center gap-3">
         <SearchBar lang={lang} />
         <AudienceFilter lang={lang} group="home" />
+        {leagues.length > 1 && <LeagueFilter lang={lang} group="home" leagues={leagues} />}
         {seasons.length > 1 && <SeasonFilter lang={lang} group="home" seasons={seasons} />}
       </div>
     </div>
