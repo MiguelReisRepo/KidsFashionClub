@@ -76,7 +76,7 @@ const ctaLabel = isPreOrder ? t('product.ask', lang) : t('product.buy', lang);
               </label>
             ))}
           </div>
-          {product.audience === 'kids' && <SizeGuide lang={lang} />}
+          <SizeGuide lang={lang} audience={product.audience} />
         </fieldset>
 
         {hasPers && (

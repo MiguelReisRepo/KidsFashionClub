@@ -83,8 +83,9 @@ const dict = {
   'reviews.firstCustomer': { pt: 'Sê o primeiro a dar feedback no Google', en: 'Be the first to leave feedback on Google' },
 
   // size guide
-  'size.guide.label':   { pt: 'Ver tabela de tamanhos',   en: 'View size chart' },
-  'size.guide.help':    { pt: 'Tamanhos kids por idade. Em caso de dúvida, fala connosco no WhatsApp.', en: 'Kids sizes by age. If unsure, message us on WhatsApp.' },
+  'size.guide.label':       { pt: 'Ver tabela de tamanhos', en: 'View size chart' },
+  'size.guide.help.kids':   { pt: 'Tamanhos kids por idade e medidas. Em caso de dúvida, fala connosco no WhatsApp.', en: 'Kids sizes by age and measurements. If unsure, message us on WhatsApp.' },
+  'size.guide.help.adult':  { pt: 'Tabela de tamanhos adulto. Em caso de dúvida, fala connosco no WhatsApp.', en: 'Adult size chart. If unsure, message us on WhatsApp.' },
 
   // form
   'product.size.pick':  { pt: 'Seleciona um tamanho',     en: 'Pick a size' },
