@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <!-- Outer circle (thin laurel ring) -->
+  <circle cx="200" cy="200" r="155" stroke="#E8B923" stroke-width="3"/>
+
+  <!-- Simplified crown (3 peaks) -->
+  <g fill="#E8B923">
+    <path d="M165 55 L200 32 L235 55 L228 75 L172 75 Z"/>
+    <circle cx="200" cy="32" r="3.5"/>
+    <circle cx="165" cy="55" r="2.5"/>
+    <circle cx="235" cy="55" r="2.5"/>
+  </g>
+
+  <!-- Stylised K -->
+  <g fill="#E8B923">
+    <rect x="155" y="120" width="22" height="160" rx="1"/>
+    <path d="M177 200 L267 120 L267 145 L210 200 Z"/>
+    <path d="M177 200 L267 280 L267 255 L210 200 Z"/>
+  </g>
+
+  <!-- Laurel left -->
+  <g stroke="#E8B923" stroke-width="2.5" stroke-linecap="round" fill="none">
+    <path d="M60 200 Q70 280 130 320"/>
+    <!-- Leaves left side -->
+    <path d="M65 215 q-12 -2 -16 -14"/>
+    <path d="M70 240 q-14 -1 -20 -12"/>
+    <path d="M80 265 q-15 1 -21 -8"/>
+    <path d="M95 290 q-15 4 -22 -3"/>
+    <path d="M115 312 q-13 7 -22 1"/>
+  </g>
+
+  <!-- Laurel right (mirror) -->
+  <g stroke="#E8B923" stroke-width="2.5" stroke-linecap="round" fill="none">
+    <path d="M340 200 Q330 280 270 320"/>
+    <path d="M335 215 q12 -2 16 -14"/>
+    <path d="M330 240 q14 -1 20 -12"/>
+    <path d="M320 265 q15 1 21 -8"/>
+    <path d="M305 290 q15 4 22 -3"/>
+    <path d="M285 312 q13 7 22 1"/>
+  </g>
+
+  <!-- Football at bottom (between laurels) -->
+  <g fill="#E8B923">
+    <circle cx="200" cy="328" r="14"/>
+  </g>
+  <g fill="#0A0A0A">
+    <polygon points="200,322 205,326 203,332 197,332 195,326"/>
+  </g>
+
+  <!-- Wordmark below -->
+  <text x="200" y="370" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" letter-spacing="3" fill="#E8B923">KIDS FASHION CLUB</text>
+</svg>

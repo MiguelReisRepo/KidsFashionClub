@@ -144,6 +144,26 @@ const ctaLabel = isPreOrder ? t('product.ask', lang) : t('product.buy', lang);
 
     </div>
   </section>
+
+  {/* Sticky bottom CTA — mobile only. Mirrors form's WhatsApp link. */}
+  <div class="sticky-cta md:hidden fixed bottom-0 left-0 right-0 z-30 border-t border-brand-line bg-brand-darker/95 backdrop-blur px-4 py-3 flex items-center justify-between gap-3" data-sticky-cta>
+    <div>
+      <div class="text-[10px] text-brand-muted uppercase tracking-widest">{t('product.total', lang)}</div>
+      <div class="text-xl font-extrabold leading-none" data-sticky-total>{product.price.toFixed(2)}€</div>
+    </div>
+    <a
+      data-sticky-wa
+      href={`https://wa.me/${phone}`}
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center gap-2 bg-brand-gold text-brand-darker font-semibold rounded-full px-5 py-2.5 hover:bg-brand-gold-soft transition-colors text-sm"
+    >
+      <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor" aria-hidden="true">
+        <path d="M20.52 3.48A11.86 11.86 0 0 0 12.04 0C5.48 0 .15 5.32.15 11.88c0 2.1.55 4.14 1.6 5.94L0 24l6.34-1.66a11.85 11.85 0 0 0 5.7 1.45h.01c6.56 0 11.89-5.32 11.89-11.88 0-3.18-1.24-6.16-3.42-8.43Z"/>
+      </svg>
+      <span>{ctaLabel}</span>
+    </a>
+  </div>
 </BaseLayout>
 
 <style>
@@ -157,6 +177,11 @@ const ctaLabel = isPreOrder ? t('product.ask', lang) : t('product.buy', lang);
   /* Show personalization fields only when checkbox is on */
   .personalize-block:has(input[name="personalize"]:checked) .pers-fields {
     display: grid !important;
+  }
+
+  /* Add bottom padding to main content so sticky CTA doesn't cover it on mobile. */
+  @media (max-width: 767px) {
+    body { padding-bottom: 72px; }
   }
 </style>
 
@@ -218,7 +243,14 @@ const ctaLabel = isPreOrder ? t('product.ask', lang) : t('product.buy', lang);
         ? (lang === 'pt' ? '\nObrigado!' : '\nThanks!')
         : (lang === 'pt' ? '\nEstá disponível?' : '\nIs it available?');
 
-      linkEl.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+      const waUrl = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+      linkEl.href = waUrl;
+
+      // Mirror onto the mobile sticky CTA.
+      const stickyTotal = document.querySelector('[data-sticky-total]');
+      const stickyWa = document.querySelector('[data-sticky-wa]');
+      if (stickyTotal) stickyTotal.textContent = fmt(total) + '€';
+      if (stickyWa) stickyWa.setAttribute('href', waUrl);
     }
 
     form.addEventListener('input', buildMessage);

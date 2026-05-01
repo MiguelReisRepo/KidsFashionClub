@@ -59,26 +59,22 @@ const hasMultipleImages = product.images.length > 1;
       />
     ))}
 
-    <div class="absolute top-3 left-3 flex flex-col gap-1 z-10">
-      {product.isClearance && (
+    {/* Single primary badge — priority: clearance > new > kids. */}
+    <div class="absolute top-3 left-3 z-10">
+      {product.isClearance ? (
         <span class="text-[10px] uppercase tracking-widest bg-red-600 text-white font-bold px-2 py-1 rounded">
           {lang === 'pt' ? 'Promoção' : 'Sale'}
         </span>
-      )}
-      {product.isNew && !product.isClearance && (
+      ) : product.isNew ? (
         <span class="text-[10px] uppercase tracking-widest bg-brand-gold text-brand-darker font-bold px-2 py-1 rounded">
           {t('product.new', lang)}
         </span>
-      )}
-      {product.audience === 'kids' && (
+      ) : product.audience === 'kids' ? (
         <span class="text-[10px] uppercase tracking-widest bg-brand-light text-brand-darker font-bold px-2 py-1 rounded">
           {t('product.kids', lang)}
         </span>
-      )}
+      ) : null}
     </div>
-    <span class:list={['absolute top-3 right-3 text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded z-10', availClass]}>
-      {availLabel}
-    </span>
 
     {hasMultipleImages && (
       <>
@@ -107,21 +103,22 @@ const hasMultipleImages = product.images.length > 1;
   </div>
 
   <div class="p-4">
-    <div class="text-xs text-brand-muted">{product.team} · {product.season}</div>
+    <div class="text-xs text-brand-muted">{product.team}</div>
     <h3 class="font-semibold mt-1 group-hover:text-brand-gold transition-colors">{displayName}</h3>
-    <div class="mt-3 flex items-center justify-between">
-      <span class="text-lg font-bold">{product.price.toFixed(2)}€</span>
-      <span class="text-xs text-brand-muted">
-        {product.shippingDays} {t('product.shipping.days', lang)}
+    <div class="mt-2 text-[11px] text-brand-muted">
+      <span class={product.availability === 'in_stock' ? 'text-brand-gold font-semibold' : ''}>
+        {availLabel}
       </span>
+      <span class="opacity-60"> · {product.shippingDays} {t('product.shipping.days', lang)}</span>
     </div>
-    {product.personalization && (
-      <div class="mt-1 text-[11px] text-brand-gold/80 font-semibold">
-        {product.personalization.price === 0
-          ? (lang === 'pt' ? '✦ Personalização incluída' : '✦ Personalisation included')
-          : `+ ${lang === 'pt' ? 'personalização' : 'personalisation'}: ${product.personalization.price.toFixed(2)}€`}
-      </div>
-    )}
+    <div class="mt-3 flex items-baseline justify-between">
+      <span class="text-lg font-bold">{product.price.toFixed(2)}€</span>
+      {product.personalization && product.personalization.price === 0 && (
+        <span class="text-[10px] text-brand-gold/70 uppercase tracking-wider">
+          {lang === 'pt' ? '✦ Pers. grátis' : '✦ Free pers.'}
+        </span>
+      )}
+    </div>
   </div>
 </a>
 

@@ -75,6 +75,12 @@ const dict = {
   'search.placeholder': { pt: 'Procurar equipa ou jogador…', en: 'Search team or player…' },
   'search.empty':       { pt: 'Sem resultados.',           en: 'No results.' },
 
+  // empty state
+  'empty.title':        { pt: 'Nenhum resultado para os filtros aplicados.', en: 'No results for the active filters.' },
+  'empty.body':         { pt: 'Tenta limpar um filtro ou pergunta-nos diretamente — encontramos o que precisas.', en: 'Try clearing a filter or message us directly — we’ll source what you need.' },
+  'empty.clear':        { pt: 'Limpar filtros',             en: 'Clear filters' },
+  'empty.ask':          { pt: 'Perguntar via WhatsApp',     en: 'Ask via WhatsApp' },
+
   // trust strip
   'trust.payment':      { pt: 'MB WAY · Transferência',     en: 'MB WAY · Bank transfer' },
   'trust.shipping':     { pt: 'Correio registado PT 5,40€ · 2-3 dias',  en: 'PT registered mail €5.40 · 2-3 days' },

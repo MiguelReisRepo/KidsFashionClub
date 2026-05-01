@@ -16,9 +16,28 @@ interface Props {
 
 const { lang, title, description, canonical, ogImage, jsonLd } = Astro.props;
 const site = import.meta.env.PUBLIC_SITE_URL ?? Astro.url.origin;
+const ig   = import.meta.env.PUBLIC_INSTAGRAM_URL;
 
 const altLang: Lang = lang === 'pt' ? 'en' : 'pt';
 const altPath = Astro.url.pathname.replace(/^\/(pt|en)/, `/${altLang}`);
+
+/** Make a relative URL absolute by prepending the site URL. */
+function absUrl(path: string | undefined): string | undefined {
+  if (!path) return undefined;
+  if (path.startsWith('http')) return path;
+  return `${site}${path.startsWith('/') ? path : `/${path}`}`;
+}
+const ogImageAbs = absUrl(ogImage) ?? `${site}/logo-full.svg`;
+
+/** Always-on Organization JSON-LD (helps Google understand the brand). */
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Kids Fashion Club',
+  url: site,
+  logo: `${site}/logo-full.svg`,
+  ...(ig && { sameAs: [ig] }),
+};
 ---
 <!doctype html>
 <html lang={lang === 'pt' ? 'pt-PT' : 'en'}>
@@ -36,17 +55,23 @@ const altPath = Astro.url.pathname.replace(/^\/(pt|en)/, `/${altLang}`);
     <link rel="alternate" hreflang="x-default" href={`${site}/pt`} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kids Fashion Club" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image" content={ogImageAbs} />
+    {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:locale" content={lang === 'pt' ? 'pt_PT' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body class="bg-brand-dark text-brand-light flex flex-col min-h-screen">

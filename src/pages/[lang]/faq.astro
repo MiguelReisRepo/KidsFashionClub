@@ -18,33 +18,55 @@ const seo = buildPageSeo({
 const faqs = {
   pt: [
     { q: 'As camisolas são oficiais?', a: 'Vendemos versões adepto (réplicas não oficiais). É indicado em cada produto.' },
-    { q: 'Como sei o meu tamanho?', a: 'Cada marca corta diferente — pede-nos a tabela de medidas via WhatsApp antes de confirmar.' },
-    { q: 'Como pago?', a: 'MB WAY ou transferência bancária. Cartão e Multibanco em breve via IfthenPay.' },
-    { q: 'Quanto demora a chegar?', a: 'Em stock: 24-48h. Por encomenda: 2-3 semanas em média.' },
+    { q: 'Como sei o meu tamanho?', a: 'Cada marca corta diferente — pede-nos a tabela de medidas via WhatsApp antes de confirmar. Tens também tabelas de tamanhos kids/adulto na página de produto.' },
+    { q: 'Como pago?', a: 'MB WAY ou transferência bancária após confirmação por WhatsApp. Cartão e Multibanco em breve via IfthenPay.' },
+    { q: 'Quanto demora a chegar?', a: 'Em stock: envio em 24-48h via correio registado CTT. Por encomenda: 2-3 semanas em média.' },
     { q: 'Posso devolver?', a: 'Sim, dentro de 14 dias após a entrega, desde que a camisola esteja por usar com etiquetas.' },
+    { q: 'A personalização é mesmo grátis?', a: 'Sim. Em todas as camisolas por encomenda incluímos personalização de nome e número sem custo extra.' },
+    { q: 'Envio para fora de Portugal continental?', a: 'Sim, ilhas e Europa. Custos calculados conforme destino — confirma via WhatsApp.' },
   ],
   en: [
     { q: 'Are the jerseys official?', a: 'We sell fan versions (unofficial replicas). It’s noted on each product page.' },
-    { q: 'How do I know my size?', a: 'Each brand fits differently — ask us for the size chart on WhatsApp before confirming.' },
-    { q: 'How do I pay?', a: 'MB WAY or bank transfer. Card and Multibanco coming soon via IfthenPay.' },
-    { q: 'How long until it arrives?', a: 'In stock: 24-48h. Pre-order: 2-3 weeks on average.' },
+    { q: 'How do I know my size?', a: 'Each brand fits differently — ask us for the size chart on WhatsApp before confirming. You can also see kids/adult size tables on the product page.' },
+    { q: 'How do I pay?', a: 'MB WAY or bank transfer after we confirm via WhatsApp. Card and Multibanco coming soon via IfthenPay.' },
+    { q: 'How long until it arrives?', a: 'In stock: 24-48h via registered CTT mail. Pre-order: 2-3 weeks on average.' },
     { q: 'Can I return it?', a: 'Yes, within 14 days of delivery, if unworn and with tags.' },
+    { q: 'Is personalisation really free?', a: 'Yes. Every pre-order kit includes free name + number printing — no extra fee.' },
+    { q: 'Do you ship outside mainland Portugal?', a: 'Yes, islands and Europe. Costs calculated by destination — confirm via WhatsApp.' },
   ],
 }[lang];
+
+// FAQPage JSON-LD for rich Google results
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout lang={lang} title={seo.title} description={seo.description} canonical={seo.canonical}>
+<BaseLayout lang={lang} title={seo.title} description={seo.description} canonical={seo.canonical} jsonLd={faqJsonLd}>
   <section class="max-w-3xl mx-auto px-4 py-16">
     <h1 class="text-4xl font-extrabold">{t('nav.faq', lang)}</h1>
-    <div class="mt-10 divide-y divide-brand-line">
+    <div class="mt-10 space-y-3">
       {faqs.map((f) => (
-        <details class="py-5 group">
-          <summary class="cursor-pointer list-none flex justify-between items-start gap-4 font-semibold">
+        <details class="faq-item group rounded-xl border border-brand-line bg-brand-darker hover:border-brand-line/80 transition-colors">
+          <summary class="cursor-pointer list-none flex justify-between items-start gap-4 p-5 font-semibold">
             <span>{f.q}</span>
-            <span class="text-brand-gold transition-transform group-open:rotate-45">+</span>
+            <span class="text-brand-gold text-2xl leading-none transition-transform group-open:rotate-45 select-none" aria-hidden="true">+</span>
           </summary>
-          <p class="mt-3 text-brand-muted">{f.a}</p>
+          <p class="px-5 pb-5 text-brand-muted leading-relaxed">{f.a}</p>
         </details>
       ))}
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .faq-item[open] {
+    border-color: var(--color-brand-gold);
+    border-left-width: 3px;
+  }
+</style>

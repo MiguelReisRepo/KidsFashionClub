@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Outer circle -->
+  <circle cx="32" cy="32" r="28.5" stroke="#E8B923" stroke-width="2"/>
+  <!-- Stylised K (geometric serif, flat) -->
+  <g fill="#E8B923">
+    <!-- Vertical bar -->
+    <rect x="20" y="16" width="5" height="32" rx="0.5"/>
+    <!-- Upper arm of K -->
+    <path d="M25 32 L43 16 L43 20.5 L29.5 32 Z"/>
+    <!-- Lower arm of K -->
+    <path d="M25 32 L43 48 L43 43.5 L29.5 32 Z"/>
+  </g>
+  <!-- Tiny ball at bottom -->
+  <circle cx="32" cy="54" r="2.2" fill="#E8B923"/>
+</svg>

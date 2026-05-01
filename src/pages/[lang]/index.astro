@@ -6,6 +6,7 @@ import AudienceFilter from '@/components/AudienceFilter.astro';
 import SeasonFilter from '@/components/SeasonFilter.astro';
 import LeagueFilter from '@/components/LeagueFilter.astro';
 import SearchBar from '@/components/SearchBar.astro';
+import EmptyState from '@/components/EmptyState.astro';
 import GoogleReviewsBadge from '@/components/GoogleReviewsBadge.astro';
 import { LANGS, t, type Lang, ROUTES } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
@@ -83,6 +84,7 @@ const seo = buildPageSeo({
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {all.map((p) => <ProductCard product={p} lang={lang} />)}
     </div>
+    <EmptyState lang={lang} />
   </section>
 
   <style is:global>

@@ -1,0 +1,77 @@
+---
+import type { Lang } from '@/lib/i18n';
+import { t } from '@/lib/i18n';
+import { plainLink } from '@/lib/whatsapp';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const wa = plainLink(lang);
+---
+<div class="empty-state hidden py-16 text-center" data-empty-state>
+  <svg viewBox="0 0 24 24" class="w-12 h-12 mx-auto text-brand-muted mb-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="8"/>
+    <path d="m21 21-4.35-4.35"/>
+    <path d="M11 8v3M11 14h.01"/>
+  </svg>
+  <p class="text-brand-light font-semibold">{t('empty.title', lang)}</p>
+  <p class="text-brand-muted text-sm mt-2 max-w-md mx-auto">{t('empty.body', lang)}</p>
+  <div class="mt-6 flex flex-wrap justify-center gap-3">
+    <button type="button" data-empty-clear class="text-xs uppercase tracking-widest border border-brand-line px-4 py-2 rounded-full hover:border-brand-gold hover:text-brand-gold transition-colors cursor-pointer">
+      {t('empty.clear', lang)}
+    </button>
+    <a href={wa} target="_blank" rel="noopener" class="text-xs uppercase tracking-widest bg-brand-gold text-brand-darker font-semibold px-4 py-2 rounded-full hover:bg-brand-gold-soft transition-colors">
+      {t('empty.ask', lang)}
+    </a>
+  </div>
+</div>
+
+<script>
+  // Watch each catalog and toggle empty state when zero cards visible.
+  document.querySelectorAll<HTMLElement>('.catalog').forEach((catalog) => {
+    const empty = catalog.querySelector<HTMLElement>('[data-empty-state]');
+    const cards = catalog.querySelectorAll<HTMLElement>('.product-card');
+    if (!empty || cards.length === 0) return;
+
+    function check() {
+      const visible = Array.from(cards).filter(
+        (c) => getComputedStyle(c).display !== 'none'
+      ).length;
+      empty.classList.toggle('hidden', visible > 0);
+    }
+
+    // Throttled check via rAF to avoid excessive work.
+    let queued = false;
+    function schedule() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        check();
+      });
+    }
+
+    // Listen to filter changes (radios) and search input.
+    catalog.addEventListener('change', schedule);
+    catalog.addEventListener('input', schedule);
+
+    // Initial check.
+    check();
+
+    // "Limpar filtros" button — reset all filters & search.
+    catalog.querySelector<HTMLButtonElement>('[data-empty-clear]')?.addEventListener('click', () => {
+      // Reset radios (audience, season, league) — pick the "all" option.
+      catalog.querySelectorAll<HTMLInputElement>('input[id$="-all"]').forEach((r) => {
+        r.checked = true;
+      });
+      // Clear search input.
+      const search = catalog.querySelector<HTMLInputElement>('[data-product-search]');
+      if (search) {
+        search.value = '';
+        search.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+      schedule();
+    });
+  });
+</script>
