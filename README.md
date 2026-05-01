@@ -1,4 +1,4 @@
-# Kids Fan Club
+# Kids Fashion Club
 
 Bilingual (PT / EN) football jersey shop. WhatsApp-based checkout.
 Static site, no auth, no cart.

@@ -45,6 +45,6 @@ export function customOrderLink(lang: Lang): string {
 }
 
 export function plainLink(lang: Lang): string {
-  const greet = lang === 'pt' ? 'Olá! Quero saber mais sobre a Kids Fan Club.' : 'Hi! I’d like to know more about Kids Fan Club.';
+  const greet = lang === 'pt' ? 'Olá! Quero saber mais sobre a Kids Fashion Club.' : 'Hi! I’d like to know more about Kids Fashion Club.';
   return build(greet);
 }

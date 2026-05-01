@@ -1,7 +1,7 @@
 import type { Lang } from './i18n';
 import type { Product } from '@/data/types';
 
-const SITE = import.meta.env.PUBLIC_SITE_URL ?? 'https://kidsfanclub.com';
+const SITE = import.meta.env.PUBLIC_SITE_URL ?? 'https://kidsfashionclub.com';
 
 export type SeoMeta = {
   title: string;
@@ -25,7 +25,7 @@ export function buildPageSeo({
 }): SeoMeta {
   const canonical = `${SITE}${path}`;
   return {
-    title: `${title} · Kids Fan Club`,
+    title: `${title} · Kids Fashion Club`,
     description,
     canonical,
     ogImage,

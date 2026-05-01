@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://kidsfanclub.com',
+  site: 'https://kidsfashionclub.com',
   trailingSlash: 'never',
   i18n: {
     defaultLocale: 'pt',
