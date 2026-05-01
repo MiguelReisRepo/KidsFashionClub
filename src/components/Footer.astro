@@ -2,6 +2,7 @@
 import type { Lang } from '@/lib/i18n';
 import { t, ROUTES } from '@/lib/i18n';
 import { plainLink } from '@/lib/whatsapp';
+import GoogleReviewsBadge from './GoogleReviewsBadge.astro';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -42,6 +43,7 @@ const wa = plainLink(lang);
       <ul class="space-y-2 text-brand-muted">
         <li><a href={wa} target="_blank" rel="noopener" class="hover:text-brand-gold">WhatsApp</a></li>
         {ig && <li><a href={ig} target="_blank" rel="noopener" class="hover:text-brand-gold">Instagram</a></li>}
+        <li><GoogleReviewsBadge lang={lang} variant="compact" /></li>
       </ul>
     </div>
   </div>

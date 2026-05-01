@@ -67,6 +67,13 @@ const dict = {
   'search.placeholder': { pt: 'Procurar equipa ou jogador…', en: 'Search team or player…' },
   'search.empty':       { pt: 'Sem resultados.',           en: 'No results.' },
 
+  // reviews
+  'reviews.title':      { pt: 'O que dizem de nós',        en: 'What people say' },
+  'reviews.sub':        { pt: 'Avaliações verificadas no Google', en: 'Verified reviews on Google' },
+  'reviews.read':       { pt: 'Ver no Google',             en: 'See on Google' },
+  'reviews.write':      { pt: 'Deixa a tua avaliação',     en: 'Leave a review' },
+  'reviews.firstCustomer': { pt: 'Sê o primeiro a dar feedback no Google', en: 'Be the first to leave feedback on Google' },
+
   // form
   'product.size.pick':  { pt: 'Seleciona um tamanho',     en: 'Pick a size' },
   'product.personalize': { pt: 'Personalizar com nome e número', en: 'Add name & number' },
