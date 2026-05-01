@@ -63,6 +63,10 @@ const dict = {
   'audience.kids':      { pt: 'Kids',                     en: 'Kids' },
   'product.kids':       { pt: 'Kids',                     en: 'Kids' },
 
+  // season
+  'season.all':         { pt: 'Todas',                    en: 'All' },
+  'season.label':       { pt: 'Época',                    en: 'Season' },
+
   // search
   'search.placeholder': { pt: 'Procurar equipa ou jogador…', en: 'Search team or player…' },
   'search.empty':       { pt: 'Sem resultados.',           en: 'No results.' },

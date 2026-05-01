@@ -1,0 +1,71 @@
+---
+import type { Lang } from '@/lib/i18n';
+import { t } from '@/lib/i18n';
+
+interface Props {
+  lang: Lang;
+  group: string;
+  seasons: string[];
+}
+
+const { lang, group, seasons } = Astro.props;
+
+/** Sanitise season for use in HTML id (no slashes). */
+function key(season: string): string {
+  return season.replace(/\//g, '-');
+}
+
+const name  = `season-${group}`;
+const idAll = `season-${group}-all`;
+---
+<input class="sr-only" type="radio" name={name} id={idAll} checked />
+{seasons.map((s) => (
+  <input class="sr-only" type="radio" name={name} id={`season-${group}-${key(s)}`} />
+))}
+
+<div class="season-filter inline-flex items-center gap-1 p-1 rounded-full border border-brand-line bg-brand-darker flex-wrap">
+  <label for={idAll} class="season-chip">{t('season.all', lang)}</label>
+  {seasons.map((s) => (
+    <label for={`season-${group}-${key(s)}`} class="season-chip">{s}</label>
+  ))}
+</div>
+
+<style>
+  .season-chip {
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 0.85rem;
+    border-radius: 9999px;
+    color: var(--color-brand-muted);
+    transition: background-color 150ms, color 150ms;
+  }
+  .season-chip:hover {
+    color: var(--color-brand-light);
+  }
+</style>
+
+<style is:global>
+  .catalog:has(input[id^="season-"][id$="-all"]:checked) .season-chip[for^="season-"][for$="-all"] {
+    background: var(--color-brand-gold);
+    color: var(--color-brand-darker);
+  }
+  .catalog:has(input[id^="season-"]:not([id$="-all"]):checked) .season-chip[for^="season-"][for$="-all"] {
+    /* nothing — when a specific season is selected, "all" is no longer highlighted */
+  }
+  /* Highlight the chip for the currently checked specific season. */
+  .catalog input[id^="season-"]:checked + .season-filter .season-chip {
+    /* placeholder; per-season highlight uses generic dynamic CSS below */
+  }
+</style>
+
+<!-- Dynamic per-season "selected" CSS (one rule per season passed in). -->
+{seasons.length > 0 && (
+  <style is:global set:html={seasons.map((s) => {
+    const k = key(s);
+    return `.catalog:has(input[id$="-${k}"]:checked) .season-chip[for$="-${k}"]{background:var(--color-brand-gold);color:var(--color-brand-darker);}`
+       + `.catalog:has(input[id$="-${k}"]:checked) .product-card:not([data-season="${s}"]){display:none;}`;
+  }).join('')}></style>
+)}

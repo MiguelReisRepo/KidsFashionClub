@@ -14,7 +14,6 @@ const idKids  = `aud-${group}-kids`;
 const idAdult = `aud-${group}-adult`;
 const name    = `aud-${group}`;
 ---
-<!-- Hidden radios + visible labels. CSS-only filter via :has() on .catalog wrapper. -->
 <input class="sr-only" type="radio" name={name} id={idAll}   checked />
 <input class="sr-only" type="radio" name={name} id={idKids} />
 <input class="sr-only" type="radio" name={name} id={idAdult} />
@@ -41,11 +40,13 @@ const name    = `aud-${group}`;
   .aud-chip:hover {
     color: var(--color-brand-light);
   }
+</style>
 
-  /* Selected state — scoped via :has() on the catalog wrapper. */
-  .catalog:has(input[id$="-all"]:checked)   .aud-chip[for$="-all"],
-  .catalog:has(input[id$="-kids"]:checked)  .aud-chip[for$="-kids"],
-  .catalog:has(input[id$="-adult"]:checked) .aud-chip[for$="-adult"] {
+<style is:global>
+  /* Selected chip state — uses :has() on the catalog wrapper. */
+  .catalog:has(input[id^="aud-"][id$="-all"]:checked)   .aud-chip[for^="aud-"][for$="-all"],
+  .catalog:has(input[id^="aud-"][id$="-kids"]:checked)  .aud-chip[for^="aud-"][for$="-kids"],
+  .catalog:has(input[id^="aud-"][id$="-adult"]:checked) .aud-chip[for^="aud-"][for$="-adult"] {
     background: var(--color-brand-gold);
     color: var(--color-brand-darker);
   }

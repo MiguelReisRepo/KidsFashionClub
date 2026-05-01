@@ -327,22 +327,48 @@ export const products: Product[] = [
   },
 ];
 
+/** Alphabetic by team, then by display name (PT). */
+function byTeamThenName(a: Product, b: Product): number {
+  const teamCmp = a.team.localeCompare(b.team, 'pt', { sensitivity: 'base' });
+  if (teamCmp !== 0) return teamCmp;
+  return a.name.pt.localeCompare(b.name.pt, 'pt', { sensitivity: 'base' });
+}
+
 export function findProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
 export function inStockProducts(audience?: Audience): Product[] {
-  return products.filter((p) => p.availability === 'in_stock' && (!audience || p.audience === audience));
+  return products
+    .filter((p) => p.availability === 'in_stock' && (!audience || p.audience === audience))
+    .sort(byTeamThenName);
 }
 
 export function preOrderProducts(audience?: Audience): Product[] {
-  return products.filter((p) => p.availability === 'pre_order' && (!audience || p.audience === audience));
+  return products
+    .filter((p) => p.availability === 'pre_order' && (!audience || p.audience === audience))
+    .sort(byTeamThenName);
 }
 
 export function newProducts(audience?: Audience): Product[] {
-  return products.filter((p) => p.isNew && (!audience || p.audience === audience));
+  return products
+    .filter((p) => p.isNew && (!audience || p.audience === audience))
+    .sort(byTeamThenName);
 }
 
 export function featuredProducts(audience?: Audience): Product[] {
-  return products.filter((p) => p.isFeatured && (!audience || p.audience === audience));
+  return products
+    .filter((p) => p.isFeatured && (!audience || p.audience === audience))
+    .sort(byTeamThenName);
+}
+
+/** All products, alphabetically (used by homepage Catálogo Completo). */
+export function allProductsSorted(): Product[] {
+  return [...products].sort(byTeamThenName);
+}
+
+/** Unique seasons present in the catalog, newest first. */
+export function uniqueSeasons(): string[] {
+  const set = new Set(products.map((p) => p.season));
+  return Array.from(set).sort((a, b) => b.localeCompare(a));
 }

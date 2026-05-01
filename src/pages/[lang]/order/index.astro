@@ -3,11 +3,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import WhatsAppButton from '@/components/WhatsAppButton.astro';
 import AudienceFilter from '@/components/AudienceFilter.astro';
+import SeasonFilter from '@/components/SeasonFilter.astro';
 import SearchBar from '@/components/SearchBar.astro';
 import { LANGS, t, type Lang } from '@/lib/i18n';
 import { buildPageSeo } from '@/lib/seo';
 import { customOrderLink } from '@/lib/whatsapp';
-import { preOrderProducts } from '@/data/seed';
+import { preOrderProducts, uniqueSeasons } from '@/data/seed';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -15,6 +16,7 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Lang };
 const products = preOrderProducts();
+const seasons = uniqueSeasons();
 const wa = customOrderLink(lang);
 
 const seo = buildPageSeo({
@@ -38,6 +40,7 @@ const seo = buildPageSeo({
       <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
         <SearchBar lang={lang} />
         <AudienceFilter lang={lang} group="order" />
+        {seasons.length > 1 && <SeasonFilter lang={lang} group="order" seasons={seasons} />}
         <WhatsAppButton href={wa} label={lang === 'pt' ? 'Pedir específica' : 'Request specific'} variant="outline" />
       </div>
     </div>
@@ -53,7 +56,7 @@ const seo = buildPageSeo({
   </section>
 </BaseLayout>
 
-<style>
-  .catalog:has(input[id$="-kids"]:checked)  .product-card[data-audience="adult"] { display: none; }
-  .catalog:has(input[id$="-adult"]:checked) .product-card[data-audience="kids"]  { display: none; }
+<style is:global>
+  .catalog:has(input[id^="aud-"][id$="-kids"]:checked)  .product-card[data-audience="adult"] { display: none; }
+  .catalog:has(input[id^="aud-"][id$="-adult"]:checked) .product-card[data-audience="kids"]  { display: none; }
 </style>
