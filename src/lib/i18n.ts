@@ -84,7 +84,7 @@ const dict = {
 
   // form
   'product.size.pick':  { pt: 'Seleciona um tamanho',     en: 'Pick a size' },
-  'product.personalize': { pt: 'Personalizar com nome e número', en: 'Add name & number' },
+  'product.personalize': { pt: 'Personalizar com nome e número (oferta)', en: 'Add name & number (free)' },
   'product.personalize.name':   { pt: 'Nome',             en: 'Name' },
   'product.personalize.number': { pt: 'Número',           en: 'Number' },
   'product.personalize.hint':   { pt: 'Ex.: SILVA 10',    en: 'e.g. SILVA 10' },

@@ -107,8 +107,10 @@ const hasMultipleImages = product.images.length > 1;
       </span>
     </div>
     {product.personalization && (
-      <div class="mt-1 text-[11px] text-brand-gold/80">
-        + {lang === 'pt' ? 'personalização' : 'personalisation'}: {product.personalization.price.toFixed(2)}€
+      <div class="mt-1 text-[11px] text-brand-gold/80 font-semibold">
+        {product.personalization.price === 0
+          ? (lang === 'pt' ? '✦ Personalização incluída' : '✦ Personalisation included')
+          : `+ ${lang === 'pt' ? 'personalização' : 'personalisation'}: ${product.personalization.price.toFixed(2)}€`}
       </div>
     )}
   </div>

@@ -83,7 +83,7 @@ const ctaLabel = isPreOrder ? t('product.ask', lang) : t('product.buy', lang);
               <input type="checkbox" name="personalize" class="mt-1 accent-brand-gold w-4 h-4" />
               <span>
                 <span class="font-semibold">{t('product.personalize', lang)}</span>
-                <span class="ml-2 text-brand-gold font-bold">+{persPrice.toFixed(2)}€</span>
+                <span class="ml-2 text-brand-gold font-bold">{persPrice === 0 ? (lang === 'pt' ? 'OFERTA' : 'FREE') : `+${persPrice.toFixed(2)}€`}</span>
                 <span class="block text-xs text-brand-muted mt-0.5">{t('product.personalize.hint', lang)}</span>
               </span>
             </label>
