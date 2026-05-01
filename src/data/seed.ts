@@ -82,7 +82,6 @@ export const products: Product[] = [
     id: '106',
     slug: 'barcelona-yamal-kids-2024-25',
     name: { pt: 'FC Barcelona Lamine Yamal #10 Kids 2025/26', en: 'FC Barcelona Lamine Yamal #10 Kids 2025/26' },
-    nameClean: { pt: 'FC Barcelona Principal Kids 2025/26', en: 'FC Barcelona Home Kids 2025/26' },
     team: 'FC Barcelona',
     season: '2025/26',
     kitType: 'home',
@@ -104,7 +103,6 @@ export const products: Product[] = [
     id: '107',
     slug: 'portugal-ronaldo-principal-kids-2024-25',
     name: { pt: 'Portugal Ronaldo #7 Principal Kids 2025/26', en: 'Portugal Ronaldo #7 Home Kids 2025/26' },
-    nameClean: { pt: 'Portugal Principal Kids 2025/26', en: 'Portugal Home Kids 2025/26' },
     team: 'Seleção Nacional',
     season: '2025/26',
     kitType: 'home',
@@ -126,7 +124,6 @@ export const products: Product[] = [
     id: '108',
     slug: 'portugal-ronaldo-alternativa-kids-2024-25',
     name: { pt: 'Portugal Ronaldo #7 Alternativa Kids 2025/26', en: 'Portugal Ronaldo #7 Away Kids 2025/26' },
-    nameClean: { pt: 'Portugal Alternativa Kids 2025/26', en: 'Portugal Away Kids 2025/26' },
     team: 'Seleção Nacional',
     season: '2025/26',
     kitType: 'away',
@@ -144,7 +141,48 @@ export const products: Product[] = [
     isNew: true,
   },
 
-  // ─── KIDS · PRE-ORDER (com personalização customizável a +3€) ────────
+  // ─── VERSÕES PRE-ORDER (mesmo modelo, sem player impresso, customizável) ──
+  {
+    id: '224',
+    slug: 'barcelona-principal-kids-encomenda',
+    name: { pt: 'FC Barcelona Principal Kids 2025/26', en: 'FC Barcelona Home Kids 2025/26' },
+    team: 'FC Barcelona', season: '2025/26', kitType: 'home', version: 'adepto', audience: 'kids',
+    price: 18.00, sizes: KIDS_SIZES, availability: 'pre_order', shippingDays: 18,
+    images: ['/products/barcelona-kids-yamal-front.jpg', '/products/barcelona-kids-yamal-back.jpg'],
+    description: {
+      pt: 'Conjunto kids FC Barcelona principal 2025/26 — t-shirt + calções, por encomenda. Personaliza com qualquer nome e número à tua escolha (foto mostra Yamal #10 como exemplo).',
+      en: 'FC Barcelona home kids kit 2025/26 — t-shirt + shorts, pre-order. Personalise with any name and number (photo shows Yamal #10 as an example).',
+    },
+    personalization: { price: 0 }, isNew: true,
+  },
+  {
+    id: '225',
+    slug: 'portugal-principal-kids-encomenda',
+    name: { pt: 'Portugal Principal Kids 2025/26', en: 'Portugal Home Kids 2025/26' },
+    team: 'Seleção Nacional', season: '2025/26', kitType: 'home', version: 'adepto', audience: 'kids',
+    price: 18.00, sizes: KIDS_SIZES, availability: 'pre_order', shippingDays: 18,
+    images: ['/products/portugal-kids-ronaldo-home-front.jpg', '/products/portugal-kids-ronaldo-home-back.jpg'],
+    description: {
+      pt: 'Conjunto kids Portugal principal 2025/26 — t-shirt + calções, por encomenda. Personaliza com qualquer nome e número à tua escolha (foto mostra Ronaldo #7 como exemplo).',
+      en: 'Portugal home kids kit 2025/26 — t-shirt + shorts, pre-order. Personalise with any name and number (photo shows Ronaldo #7 as an example).',
+    },
+    personalization: { price: 0 }, isNew: true,
+  },
+  {
+    id: '226',
+    slug: 'portugal-alternativa-kids-encomenda',
+    name: { pt: 'Portugal Alternativa Kids 2025/26', en: 'Portugal Away Kids 2025/26' },
+    team: 'Seleção Nacional', season: '2025/26', kitType: 'away', version: 'adepto', audience: 'kids',
+    price: 18.00, sizes: KIDS_SIZES, availability: 'pre_order', shippingDays: 18,
+    images: ['/products/portugal-kids-ronaldo-away-front.jpg', '/products/portugal-kids-ronaldo-away-back.jpg'],
+    description: {
+      pt: 'Conjunto kids Portugal alternativa 2025/26 — t-shirt + calções, por encomenda. Personaliza com qualquer nome e número à tua escolha (foto mostra Ronaldo #7 como exemplo).',
+      en: 'Portugal away kids kit 2025/26 — t-shirt + shorts, pre-order. Personalise with any name and number (photo shows Ronaldo #7 as an example).',
+    },
+    personalization: { price: 0 }, isNew: true,
+  },
+
+  // ─── KIDS · PRE-ORDER (com personalização customizável) ──────────────
   {
     id: '109',
     slug: 'sporting-kids-2024-25-encomenda',
